@@ -39,6 +39,7 @@ GEM
       sinatra (= 2.0.7)
       tilt (~> 2.0)
     tilt (2.0.10)
+    vcr (5.0.0)
 
 PLATFORMS
   ruby
@@ -49,6 +50,7 @@ DEPENDENCIES
   rspec!
   sinatra!
   sinatra-contrib!
+  vcr!
 
 RUBY VERSION
    ruby 2.6.3p62

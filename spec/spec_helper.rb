@@ -1,12 +1,15 @@
-require 'rack/test'
-require 'rspec'
+require "rack/test"
+require "rspec"
 
-ENV['RACK_ENV'] = 'test'
+ENV["RACK_ENV"] = "test"
 
-require 'corbot.rb'
+Dir[File.join(__dir__, "../lib/**/*.rb")].each do |file|
+  require file
+end
 
 module RSpecMixin
   include Rack::Test::Methods
+
   def app() Sinatra::Application end
 end
 
