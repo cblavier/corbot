@@ -1,9 +1,11 @@
 require "sinatra"
-require "sinatra/reloader" if development?
-
-also_reload "lib/**/*.rb"
 Dir[File.join(__dir__, "**/*.rb")].each do |file|
   require file
+end
+
+if development?
+  require "sinatra/reloader"
+  also_reload "lib/**/*.rb"
 end
 
 include Security
