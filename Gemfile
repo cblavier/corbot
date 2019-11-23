@@ -12,5 +12,6 @@ source 'https://rubygems.org' do
     gem 'rack-test'
     gem 'rspec'
     gem 'vcr'
+    gem 'webmock'
   end
 end

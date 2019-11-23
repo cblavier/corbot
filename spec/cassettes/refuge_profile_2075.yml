@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://refuge.la-cordee.net/users/2075.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Cookie:
+      - __cfduid=d49d7567d8d1884a73b98de69622f80f51568361856; _ga=GA1.2.1395710592.1568361857;
+        remember_user_token=BAhbCFsGaQIMCUkiIiQyYSQxMCRYNU5ZUnhpUU90akFuR2dYNjYvdnplBjoGRVRJIhcxNTY4MzYxODY1LjE4MzY0MTQGOwBG--617235969b11c128c7fa98c4aa6e8c9034d29b1b;
+        __utmzzses=1; _gac_UA-24572282-1=1.1573637116.CjwKCAiA8K7uBRBBEiwACOm4d94-AmNThd5m6FBPgbM5oNgSi3Et_eDEkcRYeXcZnblytKXSpWemmhoCgtUQAvD_BwE;
+        __utmzz=utmcsr=google|utmcmd=organic|utmccn=(not set)|utmctr=(not provided);
+        _gid=GA1.2.1693284341.1574241664; _refuge_session=L3h0SG1sSncyVy9MZnphazRURFppMnJCWUxPZVZoTkdXSm1jTFlkazdJVUxXdm01MXBXVGxyTVdBeWk4R3dwNGFvd3lLTWhSU0ZkTHpJNWlkTEpKS2pQc2NuT1Avb1I5MzA5dEZzOEJSR3ZyNENGY3RHMVUrbTJtcmhYTGtlNUlRVlpJemR5WHNIeUxlakVVMjM2WmsyUXQxdzJsUk40b2JlR25SbStMSU9HeWVVdkpCckNzUHF4Tjk5c1NjdXpCSzlnejI3dFVBb2lPTXdYbEljM0dFMW0wZzYrSlRwT2pZaXprZzVEM3FLMTFYaWtJVkFZSlB2UG9OcmluUCt6VFFaWmpQV2pLYU5SMGRKWWt1dUM2VWc9PS0tazVJQUhhekxJMVVmejlJSjJvRWIyQT09--e8bf0e6c3c3411b75f57f8e2ba081910a436bc83
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 23 Nov 2019 13:23:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"69ab1d923e82db35740d608f5608581f"
+      Cache-Control:
+      - must-revalidate, private, max-age=0
+      Set-Cookie:
+      - _refuge_session=R3dnSHdsaEgvTkhRQnY1dGViaFBYaXN6THRFdWo2TW9kOG5FTmhGbW9TakZLQjcrdkxtUVppOGxkNjViM3FFNFFFTTZHbmNCeUY4TWhjMmJnamtYU3RJaTB3SmJXQ0Q5bUY4bHhNNGFVTGVhNjRmSzF0eXl3TmtGRjBMbEZROWw2UHNYSlU1S1JLMS9aZjVzTTkxT2RLWFkxNkNQOFBCY1lRSHZPaStjMjY5QjV0VkhWd0owNithRXViMVFaTnQvRDFWbWx5dDcyNkUyTEg3TTJ3NXFvSTBqVmhEMEIvZUZIYkExbi84U3FXbjJNWHpkcXZCM0hEN2dtLzRmNWViTVBrcUtET0tPYVYwbzhDNUJkZDFIWGc9PS0tTHg0ajlpU3lBSlBwSE91Vjhoc3oyUT09--46be5a7de6536c439bce86c72e48ede6e6bb1b7b;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 9bacd157-3f16-47c9-9577-8dac82cbd367
+      X-Runtime:
+      - '0.201878'
+      X-Rack-Cache:
+      - miss
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 53a3748e2b01cd8f-CDG
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkZXNjcmlwdGlvbiI6IvCfko4gKyDwn465ICsg8J+NlSArIOKYrSIsImlkIjoyMDc1LCJmaXJzdF9uYW1lIjoiRnJhbsOnb2lzIiwibGFzdF9uYW1lIjoiRmVycmFuZGlzIiwiZW1haWwiOiJmcmFuY29pc0BsYS1jb3JkZWUubmV0Iiwic3RhdGUiOiJhY3RpdmUiLCJuYW1lIjoiRnJhbsOnb2lzIEZlcnJhbmRpcyIsImF2YXRhciI6eyJ1cmwiOiJodHRwczovL2xlLXJlZnVnZS1wcm9kLnMzLmFtYXpvbmF3cy5jb20vdXBsb2Fkcy9sYV9jb3JkZWUvdXNlci9hdmF0YXIvMjA3NS8yMDE3MDgwMzE4MjcyMi0yMDc1LmpwZWciLCJhcGkiOnsidXJsIjoiaHR0cHM6Ly9sZS1yZWZ1Z2UtcHJvZC5zMy5hbWF6b25hd3MuY29tL3VwbG9hZHMvbGFfY29yZGVlL3VzZXIvYXZhdGFyLzIwNzUvYXBpXzIwMTcwODAzMTgyNzIyLTIwNzUuanBlZyJ9LCJ0aHVtYiI6eyJ1cmwiOiJodHRwczovL2xlLXJlZnVnZS1wcm9kLnMzLmFtYXpvbmF3cy5jb20vdXBsb2Fkcy9sYV9jb3JkZWUvdXNlci9hdmF0YXIvMjA3NS90aHVtYl8yMDE3MDgwMzE4MjcyMi0yMDc1LmpwZWcifSwibWluaV90aHVtYiI6eyJ1cmwiOiJodHRwczovL2xlLXJlZnVnZS1wcm9kLnMzLmFtYXpvbmF3cy5jb20vdXBsb2Fkcy9sYV9jb3JkZWUvdXNlci9hdmF0YXIvMjA3NS9taW5pX3RodW1iXzIwMTcwODAzMTgyNzIyLTIwNzUuanBlZyJ9fSwibG9jYXRpb25zIjpbeyJpZCI6MTIsIm5hbWUiOiJKZWFuIE1hY8OpIn0seyJpZCI6MTMsIm5hbWUiOiJWYWxteSJ9XSwiY2l0eSI6eyJpZCI6MSwibmFtZSI6IkdyYW5kIEx5b24ifSwidGFncyI6W3siaWQiOjEwMCwibmFtZSI6IkTDqXZlbG9wcGV1ciBXZWIiLCJjb2xvciI6ImJsdWUifSx7ImlkIjo2NiwibmFtZSI6IkNpbsOpbWEgIiwiY29sb3IiOiJncmVlbiJ9LHsiaWQiOjY0LCJuYW1lIjoiQ3Vpc2luZSIsImNvbG9yIjoiZ3JlZW4ifSx7ImlkIjo3MiwibmFtZSI6IkpldXggdmlkw6lvICIsImNvbG9yIjoiZ3JlZW4ifSx7ImlkIjoxMzIsIm5hbWUiOiJNdXNpcXVlIiwiY29sb3IiOiJncmVlbiJ9LHsiaWQiOjczLCJuYW1lIjoiUGhvdG8iLCJjb2xvciI6ImdyZWVuIn0seyJpZCI6MTU2LCJuYW1lIjoiVsOpZ2FuaXNtZSAvIFbDqWfDqXRhcmlzbWUiLCJjb2xvciI6ImdyZWVuIn0seyJpZCI6MTY3LCJuYW1lIjoiWsOpcm8gZMOpY2hldCIsImNvbG9yIjoiZ3JlZW4ifSx7ImlkIjoxMTIsIm5hbWUiOiJPcGVuLVNvdXJjZS9MaWJyZSIsImNvbG9yIjoicHVycGxlIn0seyJpZCI6MTIzLCJuYW1lIjoiUG9saXRpcXVlIiwiY29sb3IiOiJwdXJwbGUifSx7ImlkIjoxMzQsIm5hbWUiOiJQc3ljaG9sb2dpZSIsImNvbG9yIjoicHVycGxlIn0seyJpZCI6NzUsIm5hbWUiOiJFc2NhbGFkZSIsImNvbG9yIjoidmlvbGV0In0seyJpZCI6MTU0LCJuYW1lIjoiU2thdGVib2FyZCIsImNvbG9yIjoidmlvbGV0In0seyJpZCI6ODEsIm5hbWUiOiJZb2dhIiwiY29sb3IiOiJ2aW9sZXQifSx7ImlkIjo4NSwibmFtZSI6IkVzcGFjZSBjYWxtZSIsImNvbG9yIjoib3JhbmdlIn1dLCJyZXZpZXdzX2Zyb21fb3RoZXJzIjpbeyJpZCI6MjY1fSx7ImlkIjo3MH1dLCJhZG1pbiI6dHJ1ZSwiY3VycmVudF9sb2NhdGlvbiI6bnVsbH0=
+    http_version: 
+  recorded_at: Sat, 23 Nov 2019 13:23:01 GMT
+recorded_with: VCR 5.0.0
