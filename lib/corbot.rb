@@ -8,8 +8,6 @@ if development?
   also_reload "lib/**/*.rb"
 end
 
-include Record
-
 set :slack_version_nb, "v0"
 set :slack_signing_secret, ENV.fetch("SLACK_SIGNING_SECRET") { :missing_slack_signing_secret }
 set :refuge_cookie, ENV.fetch("REFUGE_COOKIE") { :missing_refuge_cookie }
@@ -22,17 +20,19 @@ before do
   unless settings.test? || Slack::Security.authenticate?(headers, body, settings)
     halt 403, "could not authenticate request"
   end
+  if settings.record_requests && settings.development?
+    Corbot::Record.record_request(request)
+  end
 end
 
 post "/" do
-  record_request(request, "command") if settings.record_requests && settings.development?
   case params[:text].strip
   when "interactive"
     Thread.new do
       Slack::Messages.send_interactive_message(params[:response_url])
     end
   when "profile"
-    get_refuge_profile(2075, settings.refuge_cookie).inspect
+    Refuge::Client.get_refuge_profile(2075, settings.refuge_cookie).inspect
   when "ping"
     "pong"
   else
@@ -41,7 +41,6 @@ post "/" do
 end
 
 post "/interactive" do
-  record_request(request, "interactive") if settings.record_requests && settings.development?
 end
 
 get "/ping" do
