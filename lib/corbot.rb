@@ -11,10 +11,12 @@ end
 include Security
 include Record
 include Interactive
+include Refuge
 
 set :slack_version_nb, "v0"
-set :slack_signing_secret, ENV.fetch("SLACK_SIGNING_SECRET") { ":missing_slack_signing_secret" }
-set :record, true
+set :slack_signing_secret, ENV.fetch("SLACK_SIGNING_SECRET") { :missing_slack_signing_secret }
+set :refuge_cookie, ENV.fetch("REFUGE_COOKIE") { :missing_refuge_cookie }
+set :record_requests, false
 
 before do
   request.body.rewind
@@ -25,12 +27,14 @@ before do
 end
 
 post "/" do
-  record_request(request, "command") if settings.record && settings.development?
+  record_request(request, "command") if settings.record_requests && settings.development?
   case params[:text].strip
   when "interactive"
     Thread.new do
       send_interactive_message(params[:response_url])
     end
+  when "profile"
+    get_refuge_profile(2075, settings.refuge_cookie).inspect
   when "ping"
     "pong"
   else
@@ -39,7 +43,7 @@ post "/" do
 end
 
 post "/interactive" do
-  record_request(request, "interactive") if settings.record && settings.development?
+  record_request(request, "interactive") if settings.record_requests && settings.development?
 end
 
 get "/ping" do
