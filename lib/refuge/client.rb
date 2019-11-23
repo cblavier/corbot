@@ -8,7 +8,9 @@ module Refuge
     USE_SSL = true
 
     def self.get_refuge_profile(id, cookie)
-      get("/users/#{id}", cookie)
+      json = get("/users/#{id}", cookie)
+      json["id"] = id
+      Refuge::Member.from_json(json).freeze
     end
 
     def self.user_presences(cookie)
@@ -16,7 +18,10 @@ module Refuge
     end
 
     def self.search_users(city_id, cookie, csrf)
-      post("/users/search", { city_id: city_id, limit: 1000 }, cookie, csrf)
+      json = post("/users/search", { city_id: city_id, limit: 1000 }, cookie, csrf)
+      json["users"].map do |member_json|
+        Refuge::Member.from_json(member_json).freeze
+      end
     end
 
     private
