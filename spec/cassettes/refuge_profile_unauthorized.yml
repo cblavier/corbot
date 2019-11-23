@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://refuge.la-cordee.net/users/unauthorized
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - corbot
+      Cookie:
+      - wrong
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 23 Nov 2019 18:03:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d815f0cc466f9ec8ded32de2b592cc17b1574532181; expires=Mon, 23-Dec-19
+        18:03:01 GMT; path=/; domain=.la-cordee.net; HttpOnly
+      Cache-Control:
+      - no-cache, private
+      X-Request-Id:
+      - e72e1ac8-1ee6-47c8-928a-a9fc591332c9
+      X-Runtime:
+      - '0.012919'
+      X-Rack-Cache:
+      - miss
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 53a50eb6b991edff-CDG
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error":"Tu dois te connecter ou t''inscrire pour continuer."}'
+    http_version: 
+  recorded_at: Sat, 23 Nov 2019 18:03:01 GMT
+recorded_with: VCR 5.0.0
