@@ -1,4 +1,5 @@
 require "sinatra"
+require "sinatra/activerecord"
 Dir[File.join(__dir__, "**/*.rb")].each do |file|
   require file
 end
@@ -12,6 +13,7 @@ set :slack_version_nb, "v0"
 set :slack_signing_secret, ENV.fetch("SLACK_SIGNING_SECRET") { :missing_slack_signing_secret }
 set :refuge_cookie, ENV.fetch("REFUGE_COOKIE") { :missing_refuge_cookie }
 set :refuge_csrf, ENV.fetch("REFUGE_CSRF") { :missing_refuge_csrf }
+set :refuge_city_id, ENV.fetch("REFUGE_CITY_ID") { :missing_refuge_city_id }
 set :record_requests, false
 
 before do

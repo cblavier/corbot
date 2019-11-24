@@ -48,7 +48,7 @@ describe "Refuge API client" do
   describe "search_users" do
 
     let(:cassette) { "refuge_search_users_#{cassette_id}" }
-    let(:city_id) { 8 }
+    let(:city_id) { ENV["REFUGE_CITY_ID"] }
 
     let(:subject) {
       VCR.use_cassette(cassette) do
