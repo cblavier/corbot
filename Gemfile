@@ -8,6 +8,10 @@ source 'https://rubygems.org' do
   gem 'activerecord'
   gem 'pg'
 
+  group :development do
+    gem 'rubocop', require: false
+  end
+
   group :test do
     gem 'rack-test'
     gem 'rspec'
