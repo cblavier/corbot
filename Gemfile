@@ -6,7 +6,7 @@ source 'https://rubygems.org' do
   gem 'sinatra-contrib'
   gem 'sinatra-activerecord'
   gem 'activerecord'
-  gem 'postgres'
+  gem 'pg'
 
   group :test do
     gem 'rack-test'
