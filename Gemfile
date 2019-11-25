@@ -13,5 +13,6 @@ source 'https://rubygems.org' do
     gem 'rspec'
     gem 'vcr'
     gem 'webmock'
+    gem 'database_cleaner'
   end
 end

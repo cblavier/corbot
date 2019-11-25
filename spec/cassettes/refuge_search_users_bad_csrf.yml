@@ -5,7 +5,7 @@ http_interactions:
     uri: https://refuge.la-cordee.net/users/search
     body:
       encoding: UTF-8
-      string: '{"city_id":8,"limit":1000}'
+      string: '{"city_id":"8","limit":1000}'
     headers:
       Content-Type:
       - application/json
@@ -18,10 +18,7 @@ http_interactions:
       Host:
       - refuge.la-cordee.net
       Cookie:
-      - __cfduid=ddca7f686a8bd4d69ebdc7890480f59511568273215; _ga=GA1.2.2109251549.1568274175;
-        __utmzz=utmcsr=google|utmcmd=organic|utmccn=(not set)|utmctr=(not provided);
-        remember_user_token=BAhbCFsGaQIMCUkiIiQyYSQxMCRYNU5ZUnhpUU90akFuR2dYNjYvdnplBjoGRVRJIhYxNTc0NTMwMTYzLjIwNTMzMwY7AEY%3D--c1af01a8169ef99934922ece0f4c008f525b1cf2;
-        _gid=GA1.2.1855936719.1574530167; _gat=1; _refuge_session=djE3N2FNWDhWWlVTMWhzRzh2cVdnNGtEQVJoWkFyV3lFMEllWFJjSEdBa3gxZENjTWlXdkxnZWdvNWNXVEtKZExHaFRGVlNmMlFpbVdRMWFWY3NlRmUrRzcrcVo3bWszODNCamNWQlhEQk5sZjJnQS8veG9WTmptbHJlSjFLdVhaYURCUXNldmUvZWtxSGRwMk9KRkluUFdydE9YK3p3S2NQaE0wVFRPRFFHdHlxcndMVXFwbytRNmtQbGwzVVFDYlZTUU52dURVOVhRTjVVMnBrd3ppSUxuelRyNEhmMTB1aVU3Y05rVnFCY1hKMlhVSG5qYXhzaDViSjUyZEo5Tk1Td1huSyt5bzZ2MWx6NThGV05iVmc9PS0tS1lVNzJENlIxdGpYN0FrR1phSC80Zz09--9c0945032be9030cb00ee67500ae7cf15a866ae9
+      - "<<<REFUGE_COOKIE>>>"
       X-Csrf-Token:
       - bad_csrf
   response:
@@ -30,7 +27,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Sat, 23 Nov 2019 18:36:58 GMT
+      - Mon, 25 Nov 2019 07:03:58 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -40,9 +37,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 6308ec6a-c653-484e-8d5c-c6c2b836d4a4
+      - 20bddc4c-b214-4bdd-997a-0e211ad66ca2
       X-Runtime:
-      - '0.043836'
+      - '0.015296'
       X-Rack-Cache:
       - invalidate, pass
       Vary:
@@ -56,10 +53,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 53a5406dc91bedd3-CDG
+      - 53b1c40e292deddf-CDG
     body:
       encoding: ASCII-8BIT
       string: '{"error":"Tu dois te connecter ou t''inscrire pour continuer."}'
     http_version: 
-  recorded_at: Sat, 23 Nov 2019 18:36:58 GMT
+  recorded_at: Mon, 25 Nov 2019 07:03:58 GMT
 recorded_with: VCR 5.0.0

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://refuge.la-cordee.net/users/search
     body:
       encoding: UTF-8
-      string: '{"city_id":8,"limit":1000}'
+      string: '{"city_id":"8","limit":1000}'
     headers:
       Content-Type:
       - application/json
@@ -20,14 +20,14 @@ http_interactions:
       Cookie:
       - bad_cookie
       X-Csrf-Token:
-      - 6WyeMKWk94kpgtapl2yxLHEKqsYF0LKDRXpir5G/IOabC16pGt5ekEsYT2SU5hoezzEQ+WFpE9boSmlmcCyXgQ==
+      - "<<<REFUGE_CSRF>>>"
   response:
     status:
       code: 401
       message: Unauthorized
     headers:
       Date:
-      - Sat, 23 Nov 2019 18:36:57 GMT
+      - Mon, 25 Nov 2019 07:03:57 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,14 +35,14 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dd8b3cba5b67ff57078f88b1693819e6e1574534217; expires=Mon, 23-Dec-19
-        18:36:57 GMT; path=/; domain=.la-cordee.net; HttpOnly
+      - __cfduid=d5ded0cb4a5e0c73e207db6f1161001791574665437; expires=Wed, 25-Dec-19
+        07:03:57 GMT; path=/; domain=.la-cordee.net; HttpOnly
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 4d732171-c6a6-4110-9dd0-dcafcace7385
+      - bcd60102-3c07-4e1a-9730-f2bef0a02e3e
       X-Runtime:
-      - '0.013023'
+      - '0.036077'
       X-Rack-Cache:
       - invalidate, pass
       Vary:
@@ -56,10 +56,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 53a5406c9ebccdbf-CDG
+      - 53b1c4091de7edd3-CDG
     body:
       encoding: ASCII-8BIT
       string: '{"error":"Tu dois te connecter ou t''inscrire pour continuer."}'
     http_version: 
-  recorded_at: Sat, 23 Nov 2019 18:36:57 GMT
+  recorded_at: Mon, 25 Nov 2019 07:03:57 GMT
 recorded_with: VCR 5.0.0

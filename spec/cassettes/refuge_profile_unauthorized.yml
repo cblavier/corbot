@@ -21,7 +21,7 @@ http_interactions:
       message: Unauthorized
     headers:
       Date:
-      - Sat, 23 Nov 2019 18:03:01 GMT
+      - Mon, 25 Nov 2019 07:03:56 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -29,14 +29,14 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d815f0cc466f9ec8ded32de2b592cc17b1574532181; expires=Mon, 23-Dec-19
-        18:03:01 GMT; path=/; domain=.la-cordee.net; HttpOnly
+      - __cfduid=d6700c04a1631ec5e6e591ee2ba5a8fb31574665436; expires=Wed, 25-Dec-19
+        07:03:56 GMT; path=/; domain=.la-cordee.net; HttpOnly
       Cache-Control:
       - no-cache, private
       X-Request-Id:
-      - e72e1ac8-1ee6-47c8-928a-a9fc591332c9
+      - 78444e39-5860-46ab-917c-e69a26d0ab34
       X-Runtime:
-      - '0.012919'
+      - '0.023509'
       X-Rack-Cache:
       - miss
       Vary:
@@ -50,10 +50,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 53a50eb6b991edff-CDG
+      - 53b1c402cc8fedeb-CDG
     body:
       encoding: ASCII-8BIT
       string: '{"error":"Tu dois te connecter ou t''inscrire pour continuer."}'
     http_version: 
-  recorded_at: Sat, 23 Nov 2019 18:03:01 GMT
+  recorded_at: Mon, 25 Nov 2019 07:03:56 GMT
 recorded_with: VCR 5.0.0

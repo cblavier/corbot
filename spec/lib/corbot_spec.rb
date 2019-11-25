@@ -7,4 +7,3 @@ describe "corbot Application" do
     expect(last_response.body).to eq "pong"
   end
 end
-""

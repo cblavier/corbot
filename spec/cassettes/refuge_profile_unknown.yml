@@ -1,73 +1,75 @@
 ---
 http_interactions:
-  - request:
-      method: get
-      uri: https://refuge.la-cordee.net/users/unknown
-      body:
-        encoding: US-ASCII
-        string: ""
-      headers:
-        Accept-Encoding:
-          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-        Accept:
-          - application/json
-        User-Agent:
-          - corbot
-    response:
-      status:
-        code: 302
-        message: Found
-      headers:
-        Date:
-          - Sat, 23 Nov 2019 17:55:04 GMT
-        Content-Type:
-          - text/html; charset=utf-8
-        Transfer-Encoding:
-          - chunked
-        Connection:
-          - keep-alive
-        X-Frame-Options:
-          - SAMEORIGIN
-        X-Xss-Protection:
-          - 1; mode=block
-        X-Content-Type-Options:
-          - nosniff
-        X-Download-Options:
-          - noopen
-        X-Permitted-Cross-Domain-Policies:
-          - none
-        Referrer-Policy:
-          - strict-origin-when-cross-origin
-        Vary:
-          - Accept,Accept-Encoding
-        Location:
-          - https://refuge.la-cordee.net/users
-        Cache-Control:
-          - no-cache, private
-        Content-Security-Policy:
-          - ""
-        Set-Cookie:
-          - _refuge_session=MFZBNFNMbTZWL096R1crNnZKQS9udU1XbHJ0ZU0waUNIbFJsUll4TjhrUk5yYlFZMG1ueFRnamVxeml3MEJMNnV0aVE3VTN0TUM1ZmRYVytuZS9Yb09GbUYwSDE2dUdEaFpQeUlTcStOZXA3Uk92Nit5N2xZeTZ1NUphTkNOdVNzZHByc0doT2VTN2lDb2JmMm00RWdvQklYVWpzK29rUlFWNk8rT0dwZnA3VHZoMUZSQ2U3V2FFWGMyQWI4Y1h5QVVUZ3ZGdFlzTG5aWE1HVkxxc3h0d3JncGc4dmpwSmsvWllrcDlYT21aR1Z1dkNrb05Qa3B6YWE3dVhEdTlvK24rQVdNZWRsNTBqMFBjUno3OWVFcTM3MzNUc0RzWjlWTDZvMWM3bGlqalZFaXBZZW5NOENwcFhGQ0poSHdFSS9NK20xa0VYM3NDcUxGNUFrM3h2SGZPZjY0Y1ltNVV3Z3l5TThUQm1uSVVTaDRLQlhVakFVb1ZRRGQvN1JrTWNXQjJQZEFKUHUvS2NZaDJMaWRHd2VBZz09LS1jRlY0bUsrSEdZSVFlb1JOZEt5MWVRPT0%3D--c9beb128fe4cdc8de292d9971ad0fae6039acc6a;
-            path=/; HttpOnly
-        X-Request-Id:
-          - 75e757ad-cbf2-4f54-bb0e-fc6e5407e560
-        X-Runtime:
-          - "0.020721"
-        X-Rack-Cache:
-          - miss
-        Via:
-          - 1.1 vegur
-        Cf-Cache-Status:
-          - DYNAMIC
-        Expect-Ct:
-          - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-        Server:
-          - cloudflare
-        Cf-Ray:
-          - 53a5030d7d09cdbb-CDG
-      body:
-        encoding: UTF-8
-        string: <html><body>You are being <a href="https://refuge.la-cordee.net/users">redirected</a>.</body></html>
-      http_version:
-    recorded_at: Sat, 23 Nov 2019 17:55:04 GMT
+- request:
+    method: get
+    uri: https://refuge.la-cordee.net/users/unknown
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - corbot
+      Cookie:
+      - "<<<REFUGE_COOKIE>>>"
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Mon, 25 Nov 2019 07:03:56 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Vary:
+      - Accept,Accept-Encoding
+      Location:
+      - https://refuge.la-cordee.net/users
+      Cache-Control:
+      - no-cache, private
+      Content-Security-Policy:
+      - ''
+      Set-Cookie:
+      - _refuge_session=VFZXNVhtZlJTcHV2aG5icURUV0xkTGRZMUc0R0ErbXpJdENCdEs5ekZYVnZCSWZKRnlEdTg0Um5MWW9zMlEwMEt3dFlXSHN3bUNmUWlTU2RtZGo0NTdDcSthNHU5WmRSM0dYVnU0ZGdGWGM0OG9DRXBmSFM3Nk9TaG0zbU1zTHVoSFg0Y2NJamNmbEZ0K3BUZ01EbElEUnNRaEt1djZJZlJlN2dQUHMveHFxbHhaU2grd3VIbDdGTERSU05SMSs5Ulo0Y1pabG1xZWhENkdONkIrbzZEVUpIZzd6Rm4xOW5oY08rWHkxNjkwclFYZ3E4V1kvTG5HOEVjS1B3RnQ0ZjJITkZzdkRYQnIycVVCMFVUUXlQNm9pMUQzZFVwZ0VHbW9KRTI3cXY4MnFCRTRiYTA1cmhpcGlXV2NzZEZDOVdlVi9MV2l3QkJJQUNjakdyZ1JhK0tOWU1mdVBBS2syOXRzOXFiY1h6Z0lnTm5kcFlGU3JtS0pUMGlGbE9iNFhDeXhYaWEzNWIxVC85QlpMTTJnb1Zpdz09LS1KeUhTeUt3SWRwQ3hDZCtJUE9FdjFBPT0%3D--6a62ce95b9e7db097d164fec57f6def65c2675f7;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 740fc1f1-3e07-4b24-bf58-ec719ced1d38
+      X-Runtime:
+      - '0.017910'
+      X-Rack-Cache:
+      - miss
+      Via:
+      - 1.1 vegur
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 53b1c400db1bee50-CDG
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://refuge.la-cordee.net/users">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Mon, 25 Nov 2019 07:03:56 GMT
 recorded_with: VCR 5.0.0
