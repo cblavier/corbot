@@ -5,9 +5,6 @@ require "vcr"
 ENV["RACK_ENV"] = "test"
 
 require File.join(__dir__, "../lib/corbot")
-# Dir[File.join(__dir__, "../lib/**/*.rb")].each do |file|
-#   require file
-# end
 
 module RSpecMixin
   include Rack::Test::Methods

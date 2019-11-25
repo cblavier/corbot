@@ -1,15 +1,20 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
   database: corbot_dev
-  pool: 10
   username: corbot
   password: corbot
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: corbot_test
-  pool: 10
   username: corbot
   password: corbot
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
