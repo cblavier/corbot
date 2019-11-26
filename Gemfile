@@ -9,6 +9,10 @@ source 'https://rubygems.org' do
   gem 'pg'
   gem 'jbuilder'
 
+  group :development, :test do
+    gem 'rake'
+  end
+
   group :development do
     gem 'rubocop', require: false
   end
