@@ -3,7 +3,11 @@ module Corbot
     require File.join(__dir__, "./user")
     require File.join(__dir__, "../refuge/client")
 
+    ADMIN_IDS = ENV.fetch("ADMIN_IDS") { "" }
+
     def self.update_users_from_refuge(city_id, cookie, csrf)
+      admin_ids = ADMIN_IDS.split(",").map(&:to_i)
+
       Corbot::User.transaction do
         Corbot::User.update_all(removed: true)
 
@@ -12,6 +16,7 @@ module Corbot
             refuge_user_id: member.id,
             refuge_user_first_name: member.first_name,
             refuge_user_last_name: member.last_name,
+            admin: member.admin || admin_ids.include?(member.id)
           ).first_or_create(removed: false)
         end
       end
@@ -28,7 +33,10 @@ module Corbot
     def self.bind_user(refuge_user_id, slack_user_id, slack_user_name)
       Corbot::User
         .where(refuge_user_id: refuge_user_id)
-        .update_all(slack_user_id: slack_user_id, slack_user_name: slack_user_name)
+        .update_all(
+          slack_user_id: slack_user_id,
+          slack_user_name: slack_user_name
+        )
     end
   end
 end
