@@ -7,6 +7,7 @@ source 'https://rubygems.org' do
   gem 'sinatra-activerecord'
   gem 'activerecord'
   gem 'pg'
+  gem 'jbuilder'
 
   group :development do
     gem 'rubocop', require: false

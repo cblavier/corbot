@@ -21,6 +21,10 @@ module Corbot
       Corbot::User.where(slack_user_id: nil).limit(limit).to_a
     end
 
+    def self.users_with_slack_id(limit = 1000)
+      Corbot::User.where.not(slack_user_id: nil).limit(limit).to_a
+    end
+
     def self.bind_user(refuge_user_id, slack_user_id, slack_user_name)
       Corbot::User
         .where(refuge_user_id: refuge_user_id)

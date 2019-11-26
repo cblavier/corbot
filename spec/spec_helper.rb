@@ -6,6 +6,7 @@ require "vcr"
 require "database_cleaner"
 require "rake"
 require File.join(__dir__, "../lib/corbot")
+require File.join(__dir__, "./helpers/factories")
 
 module RSpecMixin
   include Rack::Test::Methods
@@ -25,6 +26,7 @@ end
 
 RSpec.configure do |config|
   config.include RSpecMixin
+  config.include Factories
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
