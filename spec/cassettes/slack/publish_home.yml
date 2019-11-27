@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://slack.com/api/views.publish
+    body:
+      encoding: UTF-8
+      string: '{"user_id":"U4SPRR1J8","view":"{\"type\":\"home\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Bonjour
+        *Foo* ! :smile:\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}}]}"}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<<SLACK_BOT_TOKEN>>>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '401'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 27 Nov 2019 10:23:41 GMT
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Oauth-Scopes:
+      - identify,bot:basic
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      X-Xss-Protection:
+      - '0'
+      X-Slack-Req-Id:
+      - cc38a4d93785aa3b8e7cac1235ac1370
+      Vary:
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Via:
+      - haproxy-www-e35c
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6a7dbdb209ec7dcfec16316a2b155e07.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - CDG50-C1
+      X-Amz-Cf-Id:
+      - xJjMjbO7iGcKjpRu4f-6ciFQvnDpjDNCteiWuUlJOt2Kqu-AKbZvFA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"view":{"id":"VQZGURQKE","team_id":"T3LLM537U","app_id":"AQVJR60R4","app_installed_team_id":"T3LLM537U","bot_id":"BQLR32QAW","type":"home","blocks":[{"type":"section","block_id":"pZ2n","text":{"type":"mrkdwn","text":"Bonjour
+        *Foo* ! :smile:","verbatim":false}},{"type":"section","block_id":"AH=Z","text":{"type":"mrkdwn","text":"\n","verbatim":false}}],"state":{"values":{}},"hash":"1574850221.ab0c7ada","private_metadata":"","callback_id":"","root_view_id":"VQZGURQKE","external_id":"","title":{"type":"plain_text","text":"View
+        Title","emoji":true},"close":null,"submit":null,"previous_view_id":null,"clear_on_close":false,"notify_on_close":false},"warning":"missing_charset","response_metadata":{"warnings":["missing_charset"]}}'
+    http_version: 
+  recorded_at: Wed, 27 Nov 2019 10:23:41 GMT
+recorded_with: VCR 5.0.0

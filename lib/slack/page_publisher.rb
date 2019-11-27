@@ -8,9 +8,9 @@ module Slack
     SLACK_BOT_TOKEN = ENV["SLACK_BOT_TOKEN"]
 
     def self.republish_user_home_pages 
-      Corbot::UserService.users_with_slack_id.each do |user|
-        publish_home_page(user)
-      end
+      Corbot::UserService.users_with_slack_id
+        .map(&:publish_home_page)
+        .count(&:itself)
     end
 
     def self.publish_home_page(user) 

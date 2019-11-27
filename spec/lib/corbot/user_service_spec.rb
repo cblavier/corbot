@@ -6,7 +6,7 @@ describe 'user_service' do
   let(:cookie) { ENV['REFUGE_COOKIE'] }
   let(:csrf) { ENV['REFUGE_CSRF'] }
   let(:city_id) { ENV['CITY_ID'] }
-  let(:cassette) { 'refuge_search_users_ok' }
+  let(:cassette) { 'refuge/search_users_ok' }
 
   describe 'update_users_from_refuge' do
     subject do

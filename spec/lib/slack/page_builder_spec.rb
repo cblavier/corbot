@@ -6,7 +6,7 @@ describe "PageBuilder" do
     json = Slack::PageBuilder.home_page_view(user)
     JSON.parse(json)
   }
-
+  
   describe "home_page" do
     shared_examples "a user home page" do
       it "should generate a home page" do

@@ -5,7 +5,7 @@ describe "Refuge API client" do
   let(:csrf) { ENV["REFUGE_CSRF"] }
 
   describe "user profile" do
-    let(:cassette) { "refuge_profile_#{user_id}" }
+    let(:cassette) { "refuge/profile_#{user_id}" }
 
     let(:subject) {
       VCR.use_cassette(cassette) do
@@ -47,7 +47,7 @@ describe "Refuge API client" do
 
   describe "search_users" do
 
-    let(:cassette) { "refuge_search_users_#{cassette_id}" }
+    let(:cassette) { "refuge/search_users_#{cassette_id}" }
     let(:city_id) { ENV["REFUGE_CITY_ID"] }
 
     let(:subject) {
