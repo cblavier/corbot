@@ -9,7 +9,8 @@ jobs:
     services:
       postgres:
         image: postgres:11
-        ports: ["5432:5432"]
+        ports:
+          - 5432:5432
         env:
           POSTGRES_USER: corbot
           POSTGRES_PASSWORD: corbot
@@ -28,4 +29,7 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+          rake db:create
           bundle exec rspec
+        env:
+          RACK_ENV: test
