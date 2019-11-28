@@ -1,10 +1,17 @@
 ENV["RACK_ENV"] = "test"
+
+require "simplecov"
+require 'simplecov-console'
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
+
 require "sinatra/activerecord"
 require "rspec"
 require "rack/test"
 require "vcr"
 require "database_cleaner"
 require "rake"
+
 require File.join(__dir__, "../lib/corbot")
 require File.join(__dir__, "./helpers/factories")
 

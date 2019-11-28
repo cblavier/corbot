@@ -20,5 +20,7 @@ source 'https://rubygems.org' do
     gem 'vcr'
     gem 'webmock'
     gem 'database_cleaner'
+    gem 'simplecov', require: false
+    gem 'simplecov-console', require: false
   end
 end
