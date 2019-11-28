@@ -25,7 +25,7 @@ module Corbot
     end
 
     def self.users 
-      Corbot::User.where(removed: false).order(:refuge_user_id)
+      Corbot::User.where(removed: false)
     end
 
     def self.users_without_slack_id
