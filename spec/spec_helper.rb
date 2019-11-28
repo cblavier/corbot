@@ -1,9 +1,11 @@
 ENV["RACK_ENV"] = "test"
 
-require "simplecov"
-require 'simplecov-console'
-SimpleCov.formatter = SimpleCov::Formatter::Console
-SimpleCov.start
+if ENV["COVERAGE"]
+  require "simplecov"
+  require "simplecov-console"
+  SimpleCov.formatter = SimpleCov::Formatter::Console
+  SimpleCov.start
+end
 
 require "sinatra/activerecord"
 require "rspec"
@@ -27,8 +29,8 @@ Rake::Task["db:prepare"].invoke
 VCR.configure do |config|
   config.cassette_library_dir = File.join(__dir__, "./cassettes")
   config.hook_into :webmock
-  config.filter_sensitive_data("<<<REFUGE_COOKIE>>>")   { ENV["REFUGE_COOKIE"] }
-  config.filter_sensitive_data("<<<REFUGE_CSRF>>>")     { ENV["REFUGE_CSRF"] }
+  config.filter_sensitive_data("<<<REFUGE_COOKIE>>>") { ENV["REFUGE_COOKIE"] }
+  config.filter_sensitive_data("<<<REFUGE_CSRF>>>") { ENV["REFUGE_CSRF"] }
   config.filter_sensitive_data("<<<SLACK_BOT_TOKEN>>>") { ENV["SLACK_BOT_TOKEN"] }
 end
 
