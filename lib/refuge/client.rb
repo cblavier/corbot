@@ -4,21 +4,23 @@ module Refuge
     require "cgi"
     require "json"
 
+    COOKIE = ENV.fetch("REFUGE_COOKIE")
+    CSRF = ENV.fetch("REFUGE_CSRF")
     REFUGE_BASE_URL = "https://refuge.la-cordee.net"
     USE_SSL = true
 
-    def self.get_refuge_profile(id, cookie)
-      json = get("/users/#{id}", cookie)
+    def self.get_refuge_profile(id)
+      json = get("/users/#{id}")
       json["id"] = id
       Refuge::Member.from_json(json).freeze
     end
 
-    def self.user_presences(cookie)
-      get("/locations/user_presences", cookie)
+    def self.user_presences
+      get("/locations/user_presences")
     end
 
-    def self.search_users(city_id, cookie, csrf)
-      json = post("/users/search", { city_id: city_id, limit: 1000 }, cookie, csrf)
+    def self.search_users(city_id)
+      json = post("/users/search", { city_id: city_id, limit: 1000 })
       json["users"].map do |member_json|
         Refuge::Member.from_json(member_json).freeze
       end
@@ -26,15 +28,15 @@ module Refuge
 
     private
 
-    def self.get(path, cookie)
-      http_request(path, :get, cookie)
+    def self.get(path)
+      http_request(path, :get, cookie: COOKIE)
     end
 
-    def self.post(path, payload, cookie, csrf)
-      http_request(path, :post, cookie, csrf, payload)
+    def self.post(path, payload)
+      http_request(path, :post, cookie: COOKIE, csrf: CSRF, payload: payload)
     end
 
-    def self.http_request(path, method, cookie, csrf = nil, payload = nil)
+    def self.http_request(path, method, cookie:, csrf: nil, payload: nil)
       uri = URI.parse(REFUGE_BASE_URL + path)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = USE_SSL

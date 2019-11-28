@@ -4,6 +4,13 @@ module Refuge
       8
     end
 
+    def self.cordees_nantes_location_ids
+      [
+        cordee_foure_location_id,
+        cordee_sur_erdre_location_id,
+      ]
+    end
+
     def self.cordee_foure_location_id
       14
     end

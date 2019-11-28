@@ -1,15 +1,12 @@
 require "spec_helper"
 
 describe Refuge::Client do
-  let(:cookie) { ENV["REFUGE_COOKIE"] }
-  let(:csrf) { ENV["REFUGE_CSRF"] }
-
   describe "user profile" do
     let(:cassette) { "refuge/profile_#{user_id}" }
 
     let(:subject) {
       VCR.use_cassette(cassette) do
-        described_class.get_refuge_profile(user_id, cookie)
+        described_class.get_refuge_profile(user_id)
       end
     }
 
@@ -34,15 +31,6 @@ describe Refuge::Client do
         expect { subject }.to raise_error "redirected (not found?)"
       end
     end
-
-    context "with bad cookie" do
-      let(:user_id) { "unauthorized" }
-      let(:cookie) { "wrong" }
-
-      it "should raise unauthorized error" do
-        expect { subject }.to raise_error "unauthorized"
-      end
-    end
   end
 
   describe "search_users" do
@@ -51,7 +39,7 @@ describe Refuge::Client do
 
     let(:subject) {
       VCR.use_cassette(cassette) do
-        described_class.search_users(city_id, cookie, csrf)
+        described_class.search_users(city_id)
       end
     }
 
@@ -60,27 +48,9 @@ describe Refuge::Client do
 
       it "should raise unauthorized error" do
         members = subject()
-        expect(members.length).to eq(67)
-        expect(members[0].first_name).to eq("Jérémy")
-        expect(members[66].first_name).to eq("Cécile")
-      end
-    end
-
-    context "with bad cookie" do
-      let(:cassette_id) { "bad_cookie" }
-      let(:cookie) { "bad_cookie" }
-
-      it "should raise unauthorized error" do
-        expect { subject }.to raise_error "unauthorized"
-      end
-    end
-
-    context "with bad csrf" do
-      let(:cassette_id) { "bad_csrf" }
-      let(:csrf) { "bad_csrf" }
-
-      it "should raise unauthorized error" do
-        expect { subject }.to raise_error "unauthorized"
+        expect(members.length).to eq(68)
+        expect(members[0].first_name).to eq("Rémi")
+        expect(members[66].first_name).to eq("Youcef")
       end
     end
   end

@@ -5,13 +5,13 @@ module Corbot
 
     ADMIN_IDS = ENV.fetch("ADMIN_IDS") { "" }
 
-    def self.update_users_from_refuge(city_id, cookie, csrf)
+    def self.update_users_from_refuge(city_id)
       admin_ids = ADMIN_IDS.split(",").map(&:to_i)
 
       Corbot::User.transaction do
         Corbot::User.update_all(removed: true)
 
-        Refuge::Client.search_users(city_id, cookie, csrf).each do |member|
+        Refuge::Client.search_users(city_id).each do |member|
           Corbot::User.where(refuge_user_id: member.id).first_or_initialize.tap do |user|
             user.refuge_user_first_name = member.first_name
             user.refuge_user_last_name = member.last_name
@@ -24,7 +24,19 @@ module Corbot
       end
     end
 
-    def self.users 
+    def self.refresh_presence
+      Corbot::User.transaction do
+        Corbot::User.update_all(current_location_id: nil, located_at: DateTime.now())
+        Refuge::Client.user_presences.each do |user|
+          Corbot::User
+            .where(refuge_user_id: user["id"])
+            .update_all(current_location_id: user["current_location_id"])
+        end
+      end
+      Slack::Publisher.republish_user_home_pages
+    end
+
+    def self.users
       Corbot::User.where(removed: false)
     end
 
@@ -51,7 +63,7 @@ module Corbot
         .where(refuge_user_id: refuge_user_id, removed: false)
         .update_all(
           slack_user_id: slack_user_id,
-          bound_at: DateTime.now()
+          bound_at: DateTime.now(),
         )
     end
 
@@ -61,8 +73,8 @@ module Corbot
         .limit(1)
         .update_all(
           slack_user_id: nil,
-          bound_at: nil
-        )     
+          bound_at: nil,
+        )
     end
 
     def self.ignore_bind(refuge_user_id)

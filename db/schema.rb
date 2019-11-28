@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_180722) do
+ActiveRecord::Schema.define(version: 2019_11_28_190126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_11_27_180722) do
     t.boolean "admin", default: false
     t.datetime "bound_at"
     t.boolean "ignored", default: false
+    t.string "current_location_id"
+    t.datetime "located_at"
   end
 
 end

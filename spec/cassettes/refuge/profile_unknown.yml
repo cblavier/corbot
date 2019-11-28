@@ -21,7 +21,7 @@ http_interactions:
       message: Found
     headers:
       Date:
-      - Mon, 25 Nov 2019 07:03:56 GMT
+      - Thu, 28 Nov 2019 19:17:27 GMT
       Content-Type:
       - text/html; charset=utf-8
       Transfer-Encoding:
@@ -49,12 +49,12 @@ http_interactions:
       Content-Security-Policy:
       - ''
       Set-Cookie:
-      - _refuge_session=VFZXNVhtZlJTcHV2aG5icURUV0xkTGRZMUc0R0ErbXpJdENCdEs5ekZYVnZCSWZKRnlEdTg0Um5MWW9zMlEwMEt3dFlXSHN3bUNmUWlTU2RtZGo0NTdDcSthNHU5WmRSM0dYVnU0ZGdGWGM0OG9DRXBmSFM3Nk9TaG0zbU1zTHVoSFg0Y2NJamNmbEZ0K3BUZ01EbElEUnNRaEt1djZJZlJlN2dQUHMveHFxbHhaU2grd3VIbDdGTERSU05SMSs5Ulo0Y1pabG1xZWhENkdONkIrbzZEVUpIZzd6Rm4xOW5oY08rWHkxNjkwclFYZ3E4V1kvTG5HOEVjS1B3RnQ0ZjJITkZzdkRYQnIycVVCMFVUUXlQNm9pMUQzZFVwZ0VHbW9KRTI3cXY4MnFCRTRiYTA1cmhpcGlXV2NzZEZDOVdlVi9MV2l3QkJJQUNjakdyZ1JhK0tOWU1mdVBBS2syOXRzOXFiY1h6Z0lnTm5kcFlGU3JtS0pUMGlGbE9iNFhDeXhYaWEzNWIxVC85QlpMTTJnb1Zpdz09LS1KeUhTeUt3SWRwQ3hDZCtJUE9FdjFBPT0%3D--6a62ce95b9e7db097d164fec57f6def65c2675f7;
+      - _refuge_session=SUJndDBUZmdhRys4cjZZeEYvVENYaW55RnpSRE44VnFUVmd2UGhvVG5GMld6SC9vT0tLbjl4RklRaXJwVnJmczJFY1daWENSelBCQUg1dUdBWkFFcmJhdkZLNitacGhEQnhLRE1ucTRRN09xZFhtQ3NsUHN5RzZCeUlvNUNEVnlFQTRMMlVRazUwbjNqcVVzSnRKTFlkdzZteWlJWjRFUTlIdktiTDRyQTI1Q202SG8zUWt5V1ZUSVBGWC9ad1VTVTdQRWpOMXRnT0ZHMDZLd2xmZlptZUh6bHRCa0VPbWlMRnJWdlgxSjl1Q2ZibTltRXVwWlgwU2NZazJ3bDVvRngvd01aalNVM1hQaU9YenVENUtGcGpWc2VtVGdndUpVYnhlQjF1K2djZlcxZkJsUk9uWGNjbWRpTXNMUzYvZkNZWG51NnJ6UU9NZXRlR0IydktrZlo0bEJycFJTbGFPS2hONFEzdmNJVWZxS3RzQWt6N2RSanRLWWlzYXBkbjloaG95VlhrT1UvSmN3dHVPbUNBNnFYUT09LS1lTXl1UTdmOCtpdzJxOUpudG1nT05nPT0%3D--c9f98c16328fee5adad62a216ce751f798b2eab8;
         path=/; HttpOnly
       X-Request-Id:
-      - 740fc1f1-3e07-4b24-bf58-ec719ced1d38
+      - a889f972-0216-4839-a99f-435fa7c283a1
       X-Runtime:
-      - '0.017910'
+      - '0.031356'
       X-Rack-Cache:
       - miss
       Via:
@@ -66,10 +66,10 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 53b1c400db1bee50-CDG
+      - 53ceae9f7ef9edcf-CDG
     body:
       encoding: UTF-8
       string: <html><body>You are being <a href="https://refuge.la-cordee.net/users">redirected</a>.</body></html>
     http_version: 
-  recorded_at: Mon, 25 Nov 2019 07:03:56 GMT
+  recorded_at: Thu, 28 Nov 2019 19:17:27 GMT
 recorded_with: VCR 5.0.0

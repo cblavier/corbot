@@ -1,20 +1,18 @@
 require "spec_helper"
 
 describe Corbot::UserService do
-  let(:cookie) { ENV["REFUGE_COOKIE"] }
-  let(:csrf) { ENV["REFUGE_CSRF"] }
   let(:city_id) { Refuge::Locations.nantes_city_id }
   let(:cassette) { "refuge/search_users_ok" }
 
   describe "update_users_from_refuge" do
     subject do
       VCR.use_cassette(cassette) do
-        described_class.update_users_from_refuge(city_id, cookie, csrf)
+        described_class.update_users_from_refuge(city_id)
       end
     end
 
     it "should create all users" do
-      expect { subject }.to change { Corbot::User.count }.from(0).to(67)
+      expect { subject }.to change { Corbot::User.count }.from(0).to(68)
       Corbot::User.all.each do |user|
         expect(user.removed).to be false
       end
@@ -24,12 +22,12 @@ describe Corbot::UserService do
       expect do
         subject
         subject
-      end.to change { Corbot::User.count }.from(0).to(67)
+      end.to change { Corbot::User.count }.from(0).to(68)
     end
 
     it "should delete old users" do
       user = create_user(424_242)
-      expect { subject }.to change { Corbot::User.count }.from(1).to(68).and change { user.reload.removed }.from(false).to(true)
+      expect { subject }.to change { Corbot::User.count }.from(1).to(69).and change { user.reload.removed }.from(false).to(true)
     end
   end
 
