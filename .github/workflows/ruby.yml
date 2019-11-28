@@ -29,16 +29,16 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-        env:
-          CC_TEST_REPORTER_ID: "5a1d69f3c0ffdeafa3ca7867c49268d138efecd95267d469f4ae45c48a217cf4"
       - name: Build and run rspec
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+          ./cc-test-reporter before-build
           bundle exec rspec
           ./cc-test-reporter after-build
         env:
           COVERAGE: 1
           RACK_ENV: test
-          CC_TEST_REPORTER_ID: "5a1d69f3c0ffdeafa3ca7867c49268d138efecd95267d469f4ae45c48a217cf4"
+
+    env:
+      CC_TEST_REPORTER_ID: "5a1d69f3c0ffdeafa3ca7867c49268d138efecd95267d469f4ae45c48a217cf4"
