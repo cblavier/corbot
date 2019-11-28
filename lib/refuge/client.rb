@@ -48,14 +48,22 @@ module Refuge
         raise "Unknown HTTP method #{method}"
       end
 
+      request = put_headers(request, cookie: cookie, csrf: csrf)
+      response = http.request(request)
+      handle_http_response(response)
+    end
+
+    def self.put_headers(request, cookie:, csrf:)
       request["Cookie"] = cookie
       request["X-CSRF-Token"] = csrf unless csrf.nil?
       request["Accept"] = "application/json"
       request["User-Agent"] = "corbot"
-      result = http.request(request)
+      request
+    end
 
-      case result.code
-      when /2\d{2}/ then JSON.parse(result.body)
+    def self.handle_http_response(response)
+      case response.code
+      when /2\d{2}/ then JSON.parse(response.body)
       when "302" then raise "redirected (not found?)"
       when /40[1,3]/ then raise "unauthorized"
       when "404" then raise "not found"
