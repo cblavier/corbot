@@ -2,7 +2,7 @@ desc "Update list of users from Refuge"
 task "corbot:update_users" do
   cookie = ENV.fetch("REFUGE_COOKIE")
   csrf = ENV.fetch("REFUGE_CSRF")
-  city_id = ENV.fetch("REFUGE_CITY_ID")
+  city_id = Refuge::Locations.nantes_city_id
   users = Corbot::UserService.update_users_from_refuge(city_id, cookie, csrf)
   puts "created / updated #{users.count} users"
 end
