@@ -1,8 +1,7 @@
-require "spec_helper.rb"
-require "json"
+require "spec_helper"
 
-describe "PagePublisher" do
-  let(:user) { create_user("42", "U4SPRR1J8") }
+describe Slack::PagePublisher do
+  let(:user) { create_user("42", slack_user_id: "U4SPRR1J8") }
 
   before do
     allow(STDOUT).to receive(:puts)
@@ -11,7 +10,7 @@ describe "PagePublisher" do
   describe "publish_home_page" do
     let(:subject) {
       VCR.use_cassette("slack/publish_home") do
-        Slack::PagePublisher.publish_home_page(user)
+        described_class.publish_home_page(user)
       end
     }
 

@@ -1,7 +1,7 @@
-require "spec_helper.rb"
+require "spec_helper"
 
-describe "corbot Security" do
-  subject { Slack::Security.authenticate?(headers, body, settings) }
+describe Slack::Security do
+  subject { described_class.authenticate?(headers, body, settings) }
 
   let(:headers) {
     {

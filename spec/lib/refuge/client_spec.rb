@@ -1,6 +1,6 @@
-require "spec_helper.rb"
+require "spec_helper"
 
-describe "Refuge API client" do
+describe Refuge::Client do
   let(:cookie) { ENV["REFUGE_COOKIE"] }
   let(:csrf) { ENV["REFUGE_CSRF"] }
 
@@ -9,7 +9,7 @@ describe "Refuge API client" do
 
     let(:subject) {
       VCR.use_cassette(cassette) do
-        Refuge::Client.get_refuge_profile(user_id, cookie)
+        described_class.get_refuge_profile(user_id, cookie)
       end
     }
 
@@ -46,13 +46,12 @@ describe "Refuge API client" do
   end
 
   describe "search_users" do
-
     let(:cassette) { "refuge/search_users_#{cassette_id}" }
     let(:city_id) { ENV["REFUGE_CITY_ID"] }
 
     let(:subject) {
       VCR.use_cassette(cassette) do
-        Refuge::Client.search_users(city_id, cookie, csrf)
+        described_class.search_users(city_id, cookie, csrf)
       end
     }
 
@@ -84,6 +83,5 @@ describe "Refuge API client" do
         expect{subject}.to raise_error "unauthorized"
       end 
     end
-
   end
 end

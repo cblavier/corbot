@@ -1,7 +1,4 @@
 module Slack
-
-  require "pp"
-
   module Actions
     def self.perform(action)
       case action["action_id"]
@@ -34,7 +31,6 @@ module Slack
     end
 
     def self.async_ignore_bind(refuge_user_id) 
-      puts "in async_ignore_bind"
       Thread.new do
         Corbot::UserService.ignore_bind(refuge_user_id)
         Slack::PagePublisher.republish_admin_home_pages()

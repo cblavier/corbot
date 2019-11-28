@@ -1,8 +1,6 @@
-# frozen_string_literal: true
+require 'spec_helper'
 
-require 'spec_helper.rb'
-
-describe 'user_service' do
+describe Corbot::UserService do
   let(:cookie) { ENV['REFUGE_COOKIE'] }
   let(:csrf) { ENV['REFUGE_CSRF'] }
   let(:city_id) { ENV['CITY_ID'] }
@@ -11,7 +9,7 @@ describe 'user_service' do
   describe 'update_users_from_refuge' do
     subject do
       VCR.use_cassette(cassette) do
-        Corbot::UserService.update_users_from_refuge(city_id, cookie, csrf)
+        described_class.update_users_from_refuge(city_id, cookie, csrf)
       end
     end
 
@@ -38,7 +36,7 @@ describe 'user_service' do
   end
 
   describe 'users_without_slack_id' do
-    subject { Corbot::UserService.users_without_slack_id }
+    subject { described_class.users_without_slack_id }
 
     context 'with no users' do
       let(:users) { [] }
@@ -50,7 +48,7 @@ describe 'user_service' do
 
     context 'with some unbound users' do
       let!(:users) do
-        3.times.map { |i| create_user(i, i) } + 2.times.map { |i| create_user(i) }
+        3.times.map { |i| create_user(i, slack_user_id: i) } + 2.times.map { |i| create_user(i) }
       end
 
       it 'should return them' do
@@ -62,7 +60,7 @@ describe 'user_service' do
   describe 'bind user' do
     let(:user) { create_user("42") }
     let(:slack_user_id) { "37" }
-    subject { Corbot::UserService.bind_user(user.refuge_user_id, slack_user_id) }
+    subject { described_class.bind_user(user.refuge_user_id, slack_user_id) }
 
     it 'should bind slack_user_id and bound_at' do
       expect { subject }
