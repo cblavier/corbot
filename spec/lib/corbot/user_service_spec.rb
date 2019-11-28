@@ -62,13 +62,12 @@ describe 'user_service' do
   describe 'bind user' do
     let(:user) { create_user("42") }
     let(:slack_user_id) { "37" }
-    let(:slack_user_name) { "Bob" }
-    subject { Corbot::UserService.bind_user(user.refuge_user_id, slack_user_id, slack_user_name) }
+    subject { Corbot::UserService.bind_user(user.refuge_user_id, slack_user_id) }
 
-    it 'should bind slack_user_id and slack_user_name' do
+    it 'should bind slack_user_id and bound_at' do
       expect { subject }
         .to change { user.reload.slack_user_id }.from(nil).to(slack_user_id)
-        .and change { user.reload.slack_user_name }.from(nil).to(slack_user_name)
+        .and change { user.reload.bound_at }.from(nil)
     end
   end
 end

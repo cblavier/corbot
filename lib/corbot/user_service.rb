@@ -17,6 +17,7 @@ module Corbot
             user.refuge_user_last_name = member.last_name
             user.admin = member.admin || admin_ids.include?(member.id)
             user.removed = false
+            user.ignored = false
             user.save
           end
         end
@@ -28,21 +29,46 @@ module Corbot
     end
 
     def self.users_without_slack_id
-      users.where(slack_user_id: nil)
+      users
+        .where(slack_user_id: nil)
+        .where(ignored: false)
     end
 
     def self.users_with_slack_id
-      users.where.not(slack_user_id: nil)
+      users
+        .where.not(slack_user_id: nil)
+        .where(ignored: false)
     end
 
-    def self.bind_user(refuge_user_id, slack_user_id, slack_user_name)
+    def self.admins_with_slack_id
+      users
+        .where(admin: true, ignored: false)
+        .where.not(slack_user_id: nil)
+    end
+
+    def self.bind_user(refuge_user_id, slack_user_id)
       Corbot::User
         .where(refuge_user_id: refuge_user_id, removed: false)
         .update_all(
           slack_user_id: slack_user_id,
-          slack_user_name: slack_user_name
+          bound_at: DateTime.now()
         )
     end
 
+    def self.cancel_last_bind
+      users_with_slack_id
+        .order(bound_at: :desc)
+        .limit(1)
+        .update_all(
+          slack_user_id: nil,
+          bound_at: nil
+        )     
+    end
+
+    def self.ignore_bind(refuge_user_id)
+      Corbot::User
+        .where(refuge_user_id: refuge_user_id, removed: false)
+        .update_all(ignored: true)
+    end
   end
 end

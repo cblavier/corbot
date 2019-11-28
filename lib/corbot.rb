@@ -25,20 +25,23 @@ end
 
 post "/" do
   case params[:text].strip
-  when "interactive"
-    Thread.new do
-      Slack::Messages.send_interactive_message(params[:response_url])
-    end
-  when "profile"
-    Refuge::Client.get_refuge_profile(2075, settings.refuge_cookie).inspect
   when "ping"
     "pong"
-  else
-    params.inspect
   end
 end
 
 post "/interactive" do
+  if payload = params[:payload] 
+    json = JSON.parse(payload)
+    if actions = json["actions"]
+      actions.each{ |action| Slack::Actions.perform(action) }
+    else
+      halt 400
+    end
+  else
+    halt 400
+  end
+  status 200
 end
 
 get "/ping" do

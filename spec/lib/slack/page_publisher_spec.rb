@@ -9,7 +9,6 @@ describe "PagePublisher" do
   end
 
   describe "publish_home_page" do
-
     let(:subject) {
       VCR.use_cassette("slack/publish_home") do
         Slack::PagePublisher.publish_home_page(user)

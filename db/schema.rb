@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_170940) do
+ActiveRecord::Schema.define(version: 2019_11_27_180722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(version: 2019_11_26_170940) do
     t.string "refuge_user_first_name", null: false
     t.string "refuge_user_last_name", null: false
     t.string "slack_user_id"
-    t.string "slack_user_name"
     t.boolean "removed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.datetime "bound_at"
+    t.boolean "ignored", default: false
   end
 
 end

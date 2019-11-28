@@ -3,13 +3,20 @@ module Slack
 
     require 'json'
     require 'net/http'
+    require 'pp'
 
     SLACK_PUBLISH_URL = "https://slack.com/api/views.publish"
     SLACK_BOT_TOKEN = ENV["SLACK_BOT_TOKEN"]
 
     def self.republish_user_home_pages 
       Corbot::UserService.users_with_slack_id
-        .map(&:publish_home_page)
+        .map{|user| publish_home_page(user)}
+        .count(&:itself)
+    end
+
+    def self.republish_admin_home_pages 
+      Corbot::UserService.admins_with_slack_id
+        .map{|user| publish_home_page(user)}
         .count(&:itself)
     end
 
@@ -27,6 +34,7 @@ module Slack
           true
         else
           puts "error: #{json["error"]}"
+          PP.pp JSON.parse(payload[:view])
           false
         end
       else
