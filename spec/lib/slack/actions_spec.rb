@@ -36,15 +36,13 @@ describe Slack::Actions do
 
     it "unset last bound user slack_user_id" do
       expect { subject }.to change { last_bound_user.reload.slack_user_id }
-          .from(last_bound_user.slack_user_id)
-          .to(nil)
+                              .from(last_bound_user.slack_user_id)
+                              .to(nil)
     end
 
     it "unset last bound user bound_at" do
-      initial_value = last_bound_user.bound_at
       expect { subject }.to change { last_bound_user.reload.bound_at }
-          .from(initial_value)
-          .to(nil)
+                              .to(nil)
     end
 
     it "does not modify first bound user" do
