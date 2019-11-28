@@ -8,10 +8,7 @@ source 'https://rubygems.org' do
   gem 'activerecord'
   gem 'pg'
   gem 'jbuilder'
-
-  group :development, :test do
-    gem 'rake'
-  end
+  gem 'rake'
 
   group :development do
     gem 'rubocop', require: false
