@@ -4,8 +4,6 @@ module Refuge
     require "cgi"
     require "json"
 
-    COOKIE = ENV.fetch("REFUGE_COOKIE")
-    CSRF = ENV.fetch("REFUGE_CSRF")
     REFUGE_BASE_URL = "https://refuge.la-cordee.net"
     USE_SSL = true
 
@@ -29,11 +27,14 @@ module Refuge
     private
 
     def self.get(path)
-      http_request(path, :get, cookie: COOKIE)
+      cookie = ENV["REFUGE_COOKIE"]
+      http_request(path, :get, cookie: cookie)
     end
 
     def self.post(path, payload)
-      http_request(path, :post, cookie: COOKIE, csrf: CSRF, payload: payload)
+      cookie = ENV["REFUGE_COOKIE"]
+      csrf = ENV["REFUGE_CSRF"]
+      http_request(path, :post, cookie: cookie, csrf: csrf, payload: payload)
     end
 
     def self.http_request(path, method, cookie:, csrf: nil, payload: nil)
