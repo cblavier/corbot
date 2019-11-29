@@ -3,49 +3,68 @@ module Slack
     require "jbuilder"
 
     def self.home_page_view(user)
-      user_service = Corbot::UserService
       Jbuilder.new do |view|
         view.type "home"
         blocks = [
           text_block("Bonjour *#{user.first_name}* ! :smile:"),
           text_block("\n"),
+          location_blocks("Cordée Fouré", Refuge::Locations.cordee_foure_location_id),
+          location_blocks("Cordée sur Erdre", Refuge::Locations.cordee_sur_erdre_location_id),
         ]
         if user.admin
-          total_count = user_service.users.count
-          bound_count = user_service.users_with_slack_id.count
-          user_to_bind = user_service.users_without_slack_id.first
-
-          blocks = blocks + [
-            title_blocks("Administration"),
-            text_block(
-              "Il y a *#{total_count} membres* du Refuge dont *#{bound_count}* avec un compte Slack connu.",
-              overflow("admin_overflow", [
-                { label: "Ignorer ce membre.", value: "ignore_bind_#{user_to_bind.try(:refuge_user_id)}" },
-                { label: "Annuler la dernière association.", value: "cancel_last_bind" },
-              ])
-            ),
-          ]
-          if user_to_bind
-            user_to_bind_count = user_service.users_without_slack_id.count
-            blocks = blocks + [
-              text_block(
-                "Voici le premier membre des *#{user_to_bind_count}* dont le compte Slack est inconnu :",
-              ),
-              text_block(
-                "Indiquer quel est le compte Slack de #{user_to_bind.full_name}",
-                user_select_blocks(
-                  "Choisir un compte",
-                  "bind_user_#{user_to_bind.refuge_user_id}"
-                )
-              ),
-            ]
-          end
+          blocks = blocks + build_admin_blocks()
         end
         render_blocks(view, blocks)
       end.target!
     end
 
     private
+
+    def self.location_blocks(location_name, location_id)
+      user_slack_ids = Corbot::UserService.users_by_location_id_with_slack_id(location_id).map(&:slack_user_id)
+      blocks = [
+        title_blocks(location_name),
+        text_block("Il y a *#{n(user_slack_ids.count, "membre présent", "membres présents")}* à la *#{location_name}* :"),
+      ]
+      if user_slack_ids.any?
+        blocks = blocks + [text_block(user_slack_ids.map { |id| "<@#{id}>" }.join(" "))]
+      end
+      blocks + [text_block("\n")]
+    end
+
+    def self.build_admin_blocks
+      user_service = Corbot::UserService
+      total_count = user_service.users.count
+      bound_count = user_service.users_with_slack_id.count
+      user_to_bind = user_service.users_without_slack_id.first
+
+      blocks = [
+        title_blocks("Administration"),
+        text_block(
+          "Il y a *#{n(total_count, "membre")}* du Refuge dont *#{bound_count}* avec un compte Slack connu.",
+          overflow("admin_overflow", [
+            { label: "Ignorer ce membre.", value: "ignore_bind_#{user_to_bind.try(:refuge_user_id)}" },
+            { label: "Annuler la dernière action.", value: "cancel_last_bind" },
+          ])
+        ),
+      ]
+      if user_to_bind
+        user_to_bind_count = user_service.users_without_slack_id.count
+        blocks = blocks + [
+          text_block(
+            "Voici le premier membre des *#{user_to_bind_count}* dont le compte Slack est inconnu :",
+          ),
+          text_block(
+            "Indiquer quel est le compte Slack de #{user_to_bind.full_name}",
+            user_select_blocks(
+              "Choisir un compte",
+              "bind_user_#{user_to_bind.refuge_user_id}"
+            )
+          ),
+        ]
+      end
+      blocks
+    end
 
     def self.render_blocks(view, blocks)
       view.blocks blocks.flatten do |block|
@@ -101,6 +120,16 @@ module Slack
           }
         end,
       }
+    end
+
+    def self.n(n, singular, plural = nil)
+      if n == 1
+        "1 #{singular}"
+      elsif plural
+        "#{n} #{plural}"
+      else
+        "#{n} #{singular}s"
+      end
     end
   end
 end

@@ -32,11 +32,22 @@ module Corbot
             .update_all(current_location_id: user["current_location_id"])
         end
       end
-      Slack::Publisher.republish_user_home_pages
     end
 
     def self.users
       Corbot::User.where(removed: false)
+    end
+
+    def self.users_by_location_id_with_slack_id(location_id)
+      users
+        .where(current_location_id: location_id)
+        .where.not(slack_user_id: nil)
+    end
+
+    def self.users_by_location_id_without_slack_id(location_id)
+      users
+        .where(current_location_id: location_id)
+        .where(slack_user_id: nil)
     end
 
     def self.users_without_slack_id

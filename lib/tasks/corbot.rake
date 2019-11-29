@@ -21,4 +21,5 @@ end
 desc "Refresh user presence from Refuge"
 task "corbot:refresh_presence" do
   Corbot::UserService.refresh_presence()
+  Rake::Task["corbot:republish"].execute
 end
