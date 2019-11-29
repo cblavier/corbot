@@ -41,4 +41,4 @@ jobs:
           RACK_ENV: test
 
     env:
-      CC_TEST_REPORTER_ID: "5a1d69f3c0ffdeafa3ca7867c49268d138efecd95267d469f4ae45c48a217cf4"
+      CC_TEST_REPORTER_ID: 5a1d69f3c0ffdeafa3ca7867c49268d138efecd95267d469f4ae45c48a217cf4

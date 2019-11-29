@@ -1,7 +1,6 @@
 module Slack
   module PageBuilder
-
-    require 'jbuilder'
+    require "jbuilder"
 
     def self.home_page_view(user)
       user_service = Corbot::UserService
@@ -9,12 +8,12 @@ module Slack
         view.type "home"
         blocks = [
           text_block("Bonjour *#{user.first_name}* ! :smile:"),
-          text_block("\n")
+          text_block("\n"),
         ]
-        if user.admin     
+        if user.admin
           total_count = user_service.users.count
           bound_count = user_service.users_with_slack_id.count
-          user_to_bind = user_service.users_without_slack_id.first 
+          user_to_bind = user_service.users_without_slack_id.first
 
           blocks = blocks + [
             title_blocks("Administration"),
@@ -22,20 +21,23 @@ module Slack
               "Il y a *#{total_count} membres* du Refuge dont *#{bound_count}* avec un compte Slack connu.",
               overflow("admin_overflow", [
                 { label: "Ignorer ce membre.", value: "ignore_bind_#{user_to_bind.try(:refuge_user_id)}" },
-                { label: "Annuler la dernière association.", value: "cancel_last_bind" }
+                { label: "Annuler la dernière association.", value: "cancel_last_bind" },
               ])
-            )
+            ),
           ]
           if user_to_bind
             user_to_bind_count = user_service.users_without_slack_id.count
             blocks = blocks + [
               text_block(
-                "Voici le premier des *#{user_to_bind_count}* restant à associer :",
+                "Voici le premier membre des *#{user_to_bind_count}* dont le compte Slack est inconnu :",
               ),
-              user_select_blocks(
-                user_to_bind.full_name,
-                "bind_user_#{user_to_bind.refuge_user_id}"
-              )
+              text_block(
+                "Indiquer quel est le compte Slack de #{user_to_bind.full_name}",
+                user_select_blocks(
+                  "Choisir un compte",
+                  "bind_user_#{user_to_bind.refuge_user_id}"
+                )
+              ),
             ]
           end
         end
@@ -51,17 +53,17 @@ module Slack
         %I(text accessory elements options).each do |key|
           if block[key]
             view.set! key do
-              view.merge!(block[key]) 
+              view.merge!(block[key])
             end
           end
         end
-      end 
+      end
     end
 
     def self.title_blocks(title)
       [
         text_block("*#{title}*"),
-        { type: "divider" }
+        { type: "divider" },
       ]
     end
 
@@ -72,36 +74,32 @@ module Slack
           type: "mrkdwn",
           text: markdown,
         },
-        accessory: accessory
+        accessory: accessory,
       }
     end
 
-    def self.user_select_blocks(placeholder, action_id, accessory = nil) 
+    def self.user_select_blocks(placeholder, action_id, accessory = nil)
       {
-        type: "actions",
-        elements: [{
-          type: "users_select",
-          action_id: action_id,
-          placeholder: {
-            type: "plain_text",
-            text: placeholder,
-            emoji: true
-          }
-        }],
-        accessory: accessory
+        type: "users_select",
+        action_id: action_id,
+        placeholder: {
+          type: "plain_text",
+          text: placeholder,
+          emoji: true,
+        },
       }
     end
 
-    def self.overflow(action_id, actions) 
+    def self.overflow(action_id, actions)
       {
         type: "overflow",
         action_id: action_id,
         options: actions.map do |action|
-          { 
+          {
             text: { type: "plain_text", text: action[:label] },
-            value: action[:value]
+            value: action[:value],
           }
-        end
+        end,
       }
     end
   end
