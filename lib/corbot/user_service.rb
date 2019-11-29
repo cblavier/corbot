@@ -38,16 +38,8 @@ module Corbot
       Corbot::User.where(removed: false)
     end
 
-    def self.users_by_location_id_with_slack_id(location_id)
-      users
-        .where(current_location_id: location_id)
-        .where.not(slack_user_id: nil)
-    end
-
-    def self.users_by_location_id_without_slack_id(location_id)
-      users
-        .where(current_location_id: location_id)
-        .where(slack_user_id: nil)
+    def self.users_by_location_id(location_id)
+      users.where(current_location_id: location_id)
     end
 
     def self.users_without_slack_id

@@ -21,13 +21,13 @@ module Slack
     private
 
     def self.location_blocks(location_name, location_id)
-      user_slack_ids = Corbot::UserService.users_by_location_id_with_slack_id(location_id).map(&:slack_user_id)
+      users = Corbot::UserService.users_by_location_id(location_id)
       blocks = [
         title_blocks(location_name),
-        text_block("Il y a *#{n(user_slack_ids.count, "membre présent", "membres présents")}* à la *#{location_name}* :"),
+        text_block("Il y a *#{n(users.count, "membre présent", "membres présents")}* à la *#{location_name}* :"),
       ]
-      if user_slack_ids.any?
-        blocks = blocks + [text_block(user_slack_ids.map { |id| "<@#{id}>" }.join(" "))]
+      if users.any?
+        blocks = blocks + [text_block(users.map { |u| display_user(u) }.join(" "))]
       end
       blocks + [text_block("\n")]
     end
@@ -120,6 +120,14 @@ module Slack
           }
         end,
       }
+    end
+
+    def self.display_user(user)
+      if user.slack_user_id
+        "<@#{user.slack_user_id}>"
+      else
+        user.first_name
+      end
     end
 
     def self.n(n, singular, plural = nil)
