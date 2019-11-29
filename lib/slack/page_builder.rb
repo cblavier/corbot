@@ -27,7 +27,7 @@ module Slack
         text_block("Il y a *#{n(users.count, "membre présent", "membres présents")}* à la *#{location_name}* :"),
       ]
       if users.any?
-        blocks = blocks + [text_block(users.map { |u| display_user(u) }.join(" "))]
+        blocks = blocks + [text_block(users.map { |u| display_user(u) }.join(", "))]
       end
       blocks + [text_block("\n")]
     end
