@@ -24,11 +24,17 @@ module Slack
       users = Corbot::UserService.users_by_location_id(location_id)
       blocks = [
         title_blocks(location_name),
-        text_block("Il y a *#{n(users.count, "membre présent", "membres présents")}* à la *#{location_name}* :"),
+        text_block("*#{n(users.count, "membre* est présent", "membres* sont présents")} à la *#{location_name}* :")
       ]
+
       if users.any?
-        blocks = blocks + [text_block(users.map { |u| display_user(u) }.join(", "))]
+        refresh_date = users.order(located_at: :asc).first.located_at.in_time_zone("Europe/Paris").strftime("%H:%M:%S")
+        blocks = blocks + [
+          text_block(users.map { |u| display_user(u) }.join(", ")),
+          context_block("Mis à jour à #{refresh_date}")
+        ]
       end
+
       blocks + [text_block("\n")]
     end
 
@@ -94,6 +100,16 @@ module Slack
           text: markdown,
         },
         accessory: accessory,
+      }
+    end
+
+    def self.context_block(markdown)
+      {
+        type: "context",
+        elements: [{
+          type: "mrkdwn",
+          text: markdown,
+        }]
       }
     end
 
