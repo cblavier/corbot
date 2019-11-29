@@ -17,7 +17,6 @@ module Corbot
             user.refuge_user_last_name = member.last_name
             user.admin = member.admin || admin_ids.include?(member.id)
             user.removed = false
-            user.ignored = false
             user.save
           end
         end

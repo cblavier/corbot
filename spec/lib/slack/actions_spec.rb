@@ -3,10 +3,13 @@ require "spec_helper"
 describe Slack::Actions do
   before do
     allow(Thread).to receive(:new).and_yield
+    allow(STDOUT).to receive(:puts)
   end
 
   subject {
-    described_class.perform(params)
+    VCR.use_cassette("slack/publish_home") do
+      described_class.perform(params)
+    end
   }
 
   describe "bind_user" do

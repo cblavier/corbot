@@ -36,9 +36,14 @@ describe Corbot do
     end
 
     context "when actions is valid" do
+      let!(:user) { create_user("1") }
+
       let(:params) {
         { payload: { actions: [
-          { action_id: "bind_user_1" },
+          {
+            action_id: "admin_overflow",
+            selected_option: { value: "cancel_last_bind" },
+          },
         ] }.to_json }
       }
 

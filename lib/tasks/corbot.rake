@@ -3,6 +3,7 @@ task "corbot:update_users" do
   city_id = Refuge::Locations.nantes_city_id
   users = Corbot::UserService.update_users_from_refuge(city_id)
   puts "created / updated #{users.count} users"
+  Rake::Task["corbot:republish"].execute
 end
 
 desc "Publish home pages"
