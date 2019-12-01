@@ -8,7 +8,7 @@ describe Slack::Actions do
 
   subject {
     VCR.use_cassette("slack/publish_home") do
-      described_class.perform(params)
+      described_class.perform_action(params)
     end
   }
 

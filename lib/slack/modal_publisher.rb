@@ -1,37 +1,27 @@
 module Slack
-  module PagePublisher
+  # Module to open, update and interact with Slack modal views.
+  module ModalPublisher
     require 'json'
     require 'net/http'
     require 'pp'
 
-    def self.republish_user_home_pages
-      Corbot::UserService
-        .users_with_slack_id
-        .map { |user| publish_home_page(user) }
-        .count(&:itself)
-    end
-
-    def self.republish_admin_home_pages
-      Corbot::UserService
-        .admins_with_slack_id
-        .map { |user| publish_home_page(user) }
-        .count(&:itself)
-    end
-
-    def self.publish_home_page(user)
-      puts "Publishing page for #{user.full_name}"
+    def self.publish_profile_modal(user, user_profile, trigger_id)
+      puts "Publishing profile modal of #{user_profile['first_name']} #{user_profile['last_name']}"
+      pp user_profile
+      slack_publish_url = 'https://slack.com/api/views.open'.freeze
+      slack_bot_token = ENV['SLACK_BOT_TOKEN']
       payload = {
-        user_id: user.slack_user_id,
-        view: Slack::PageBuilder.home_page_view(user)
+        trigger_id: trigger_id,
+        view: Slack::ModalBuilder.profile_modal(user, user_profile)
       }
       response = post_json(slack_publish_url, slack_bot_token, payload)
       if response.code == '200'
         json = JSON.parse(response.body)
-        if json['ok'] 
+        if json['ok']
           puts 'ok'
           true
         else
-          puts "error: #{json['error']}"
+          puts "error: #{json.inspect}"
           PP.pp JSON.parse(payload[:view])
           false
         end
@@ -52,14 +42,6 @@ module Slack
       )
       request.body = payload.to_json
       https.request(request)
-    end
-
-    def self.slack_publish_url
-      'https://slack.com/api/views.publish'.freeze
-    end
-  
-    def self.slack_bot_token
-      ENV['SLACK_BOT_TOKEN']
     end
   end
 end
