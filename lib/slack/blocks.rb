@@ -22,9 +22,9 @@ module Slack
         end
       end
 
-      def title_blocks(title)
+      def title_blocks(title, accessory = nil)
         [
-          text_block("*#{title}*"),
+          text_block("*#{title}*", accessory),
           { type: 'divider' }
         ]
       end

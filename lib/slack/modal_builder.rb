@@ -15,21 +15,22 @@ module Slack
         end
 
         blocks = [
-          text_block(
-            "*Qui suis-je?* \n",
-            image_block(user_profile['avatar'], 'Photo de profil')
-          ),
-          text_block(
-            user_profile['description'],
+          title_blocks(
+            ':grinning: - Qui suis-je ?',
             button_block(
               'Voir sur le Refuge',
               "https://refuge.la-cordee.net/users/#{user.refuge_user_id}"
             )
-          )
+          ),
+          text_block(
+            user_profile['description'],
+            image_block(user_profile['avatar'], 'Photo de profil')
+          ),
+          text_block("\n")
         ]
 
         if user_profile['tags'].any?
-          blocks += [text_block("*Mes centres d'intérêt*")]
+          blocks += title_blocks(":game_die: - Mes centres d'intérêt")
           tags = user_profile['tags'].map { |tag| "- #{tag}" }
           tags.each_slice(10) do |tag_slice|
             blocks += [fields_block(tag_slice)]
