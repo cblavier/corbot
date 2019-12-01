@@ -4,6 +4,26 @@ module Slack
     require_relative './blocks'
     include Slack::Blocks
 
+    def self.profile_modal_404
+      Jbuilder.new do |view|
+        view.type 'modal'
+        view.callback_id 'modal-profile'
+        view.title do
+          view.type 'plain_text'
+          view.text 'Pas de profil ...'
+        end
+        render_blocks(view,
+          [
+            text_block("Oups, on dirait que je n'ai pas accès au profil de ce membre :tired_face:"),
+            image_block(
+              'https://gifimage.net/wp-content/uploads/2017/12/jhon-travolta-gif-1.gif',
+              'Confused Travolta'
+            )
+          ]
+        )
+      end.target!
+    end
+
     def self.profile_modal(user, user_profile)
       full_name = "#{user_profile['first_name']} #{user_profile['last_name']}"
       Jbuilder.new do |view|

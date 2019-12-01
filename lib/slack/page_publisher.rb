@@ -57,7 +57,7 @@ module Slack
     def self.slack_publish_url
       'https://slack.com/api/views.publish'.freeze
     end
-  
+
     def self.slack_bot_token
       ENV['SLACK_BOT_TOKEN']
     end

@@ -12,7 +12,7 @@ module Slack
       def render_blocks(view, blocks)
         view.blocks blocks.flatten do |block|
           view.type block[:type]
-          %I[text accessory elements options fields].each do |key|
+          %I[text accessory elements options fields image_url alt_text].each do |key|
             next unless block[key]
 
             view.set! key do

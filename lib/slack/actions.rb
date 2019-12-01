@@ -47,10 +47,14 @@ module Slack
 
     private_class_method def self.async_view_profile(trigger_id, message)
       Thread.new do
-        user = Corbot::User.where(slack_user_id: message['user']).first
-        if user
-          profile = Refuge::Client.get_refuge_profile(user.refuge_user_id)
-          Slack::ModalPublisher.publish_profile_modal(user, profile, trigger_id)
+        if (user = Corbot::User.where(slack_user_id: message['user']).first)
+          if (profile = Refuge::Client.get_refuge_profile(user.refuge_user_id))
+            Slack::ModalPublisher.publish_profile_modal(user, profile, trigger_id)
+          else
+            Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
+          end
+        else
+          Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
         end
       end
     end
