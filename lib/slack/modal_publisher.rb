@@ -7,7 +7,6 @@ module Slack
 
     def self.publish_profile_modal(user, user_profile, trigger_id)
       puts "Publishing profile modal of #{user_profile['first_name']} #{user_profile['last_name']}"
-      pp user_profile
       slack_publish_url = 'https://slack.com/api/views.open'.freeze
       slack_bot_token = ENV['SLACK_BOT_TOKEN']
       payload = {
