@@ -17,14 +17,14 @@ module Slack
         blocks = [
           text_block(
             "*Qui suis-je?* \n",
+            image_block(user_profile['avatar'], 'Photo de profil')
+          ),
+          text_block(
+            user_profile['description'],
             button_block(
               'Voir sur le Refuge',
               "https://refuge.la-cordee.net/users/#{user.refuge_user_id}"
             )
-          ),
-          text_block(
-            user_profile['description'],
-            image_block(user_profile['avatar'], 'Photo de profil')
           )
         ]
 
