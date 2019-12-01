@@ -43,7 +43,7 @@ module Slack
             )
           ),
           text_block(
-            user_profile['description'],
+            user_profile['description'].blank? ? '-' : user_profile['description'],
             image_block(user_profile['avatar'], 'Photo de profil')
           ),
           text_block("\n")
