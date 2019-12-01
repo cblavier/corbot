@@ -36,7 +36,7 @@ module Slack
 
         blocks = [
           title_blocks(
-            ':grinning: - Qui suis-je ?',
+            ':grinning:   Qui suis-je ?',
             button_block(
               'Voir sur le Refuge',
               "https://refuge.la-cordee.net/users/#{user.refuge_user_id}"
@@ -50,7 +50,7 @@ module Slack
         ]
 
         if user_profile['tags'].any?
-          blocks += title_blocks(":game_die: - Mes centres d'intérêt")
+          blocks += title_blocks(":game_die:   Mes centres d'intérêt")
           tags = user_profile['tags'].map { |tag| "- #{tag}" }
           tags.each_slice(10) do |tag_slice|
             blocks += [fields_block(tag_slice)]
