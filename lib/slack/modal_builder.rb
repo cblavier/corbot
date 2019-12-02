@@ -49,8 +49,36 @@ module Slack
           text_block("\n")
         ]
 
+        unless user_profile['description_1'].blank?
+          blocks += [
+            title_blocks(':handshake:   Services'),
+            text_block(user_profile['description_1'])
+          ]
+        end
+
+        unless user_profile['description_2'].blank?
+          blocks += [
+            title_blocks(':open_file_folder:   Références'),
+            text_block(user_profile['description_2'])
+          ]
+        end
+
+        unless user_profile['description_3'].blank?
+          blocks += [
+            title_blocks(':game_die:   Hobbies'),
+            text_block(user_profile['description_3'])
+          ]
+        end
+
+        unless user_profile['description_4'].blank?
+          blocks += [
+            title_blocks('':zap:   Super pouvoirs'),
+            text_block(user_profile['description_4'])
+          ]
+        end
+
         if user_profile['tags'].any?
-          blocks += title_blocks(":game_die:   Mes centres d'intérêt")
+          blocks += title_blocks(":star-struck:   Mes centres d'intérêt")
           tags = user_profile['tags'].map { |tag| "- #{tag}" }
           tags.each_slice(10) do |tag_slice|
             blocks += [fields_block(tag_slice)]
