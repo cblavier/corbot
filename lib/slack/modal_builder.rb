@@ -72,7 +72,7 @@ module Slack
 
         unless user_profile['description_4'].blank?
           blocks += [
-            title_blocks('':zap:   Super pouvoirs'),
+            title_blocks(':zap:   Super pouvoirs'),
             text_block(user_profile['description_4'])
           ]
         end
@@ -83,6 +83,21 @@ module Slack
           tags.each_slice(10) do |tag_slice|
             blocks += [fields_block(tag_slice)]
           end
+        end
+
+        blocks += [divider_block()]
+
+        unless user_profile['home'].blank?
+          blocks += [
+            context_block(":house_with_garden: #{user_profile['home']}")
+          ]
+        end
+        
+        unless user_profile['created_at'].blank?
+          created_at = DateTime.parse(user_profile['created_at'])
+          blocks += [
+            context_block("A rejoint la Cordée le #{created_at.strftime('%d %B %Y')}")
+          ]
         end
 
         render_blocks(view, blocks)
