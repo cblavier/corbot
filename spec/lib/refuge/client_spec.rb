@@ -18,7 +18,6 @@ describe Refuge::Client do
         expect(profile.id).to eq(user_id)
         expect(profile.first_name).to eq("François")
         expect(profile.last_name).to eq("Ferrandis")
-        expect(profile.email).to eq("francois@la-cordee.net")
         expect(profile.description).to eq("💎 + 🎹 + 🍕 + ☭")
         expect(profile.tags).to satisfy { |tags| tags.length == 15 }
       end

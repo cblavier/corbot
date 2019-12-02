@@ -52,28 +52,32 @@ module Slack
         unless user_profile['description_1'].blank?
           blocks += [
             title_blocks(':handshake:   Services'),
-            text_block(user_profile['description_1'])
+            text_block(user_profile['description_1']),
+            text_block("\n")
           ]
         end
 
         unless user_profile['description_2'].blank?
           blocks += [
             title_blocks(':open_file_folder:   Références'),
-            text_block(user_profile['description_2'])
+            text_block(user_profile['description_2']),
+            text_block("\n")
           ]
         end
 
         unless user_profile['description_3'].blank?
           blocks += [
             title_blocks(':game_die:   Hobbies'),
-            text_block(user_profile['description_3'])
+            text_block(user_profile['description_3']),
+            text_block("\n")
           ]
         end
 
         unless user_profile['description_4'].blank?
           blocks += [
             title_blocks(':zap:   Super pouvoirs'),
-            text_block(user_profile['description_4'])
+            text_block(user_profile['description_4']),
+            text_block("\n")
           ]
         end
 
@@ -85,18 +89,17 @@ module Slack
           end
         end
 
-        blocks += [divider_block()]
+        blocks += [divider_block]
+
+        unless user_profile['created_at'].blank?
+          blocks += [
+            context_block("A rejoint la Cordée le #{user_profile['created_at'].strftime('%d %B %Y')}")
+          ]
+        end
 
         unless user_profile['home'].blank?
           blocks += [
             context_block(":house_with_garden: #{user_profile['home']}")
-          ]
-        end
-        
-        unless user_profile['created_at'].blank?
-          created_at = DateTime.parse(user_profile['created_at'])
-          blocks += [
-            context_block("A rejoint la Cordée le #{created_at.strftime('%d %B %Y')}")
           ]
         end
 
