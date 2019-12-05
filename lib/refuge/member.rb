@@ -1,7 +1,8 @@
 module Refuge
+  # Refuge Member API data structure.
   class Member < OpenStruct
     def self.from_json(json)
-      self.new(
+      new(
         id: json['id'].to_i,
         first_name: json['first_name'],
         last_name: json['last_name'],
@@ -19,11 +20,11 @@ module Refuge
     end
 
     def self.get_avatar(json)
-      json["avatar"] ? json["avatar"]["url"] : nil
+      json['avatar'] ? json['avatar']['url'] : nil
     end
 
     def self.get_tags(json)
-      json["tags"] ? json["tags"].map { |tag| tag["name"] } : []
+      json['tags'] ? json['tags'].map { |tag| tag['name'] } : []
     end
   end
 end

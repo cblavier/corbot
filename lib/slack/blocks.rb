@@ -2,13 +2,12 @@ module Slack
   # Slack::PageBuilder allows to build Slack blocks.
   # https://api.slack.com/reference/block-kit/blocks
   module Blocks
-    def self.included base
+    def self.included(base)
       base.extend ClassMethods
     end
 
     # Class methods
     module ClassMethods
-
       def render_blocks(view, blocks)
         view.blocks blocks.flatten do |block|
           view.type block[:type]
@@ -22,14 +21,14 @@ module Slack
         end
       end
 
-      def divider_block 
+      def divider_block
         { type: 'divider' }
       end
 
       def title_blocks(title, accessory = nil)
         [
           text_block("*#{title}*", accessory),
-          divider_block()
+          divider_block
         ]
       end
 
@@ -82,7 +81,7 @@ module Slack
         }
       end
 
-      def button_block(label, url) 
+      def button_block(label, url)
         {
           type: 'button',
           text: {

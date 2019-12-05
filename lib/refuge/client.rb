@@ -1,5 +1,5 @@
 module Refuge
-  # HTTP Client for unoffical Refuge APIs
+  # HTTP Client for unoffical Refuge APIs.
   module Client
     require 'net/http'
     require 'cgi'
@@ -19,7 +19,7 @@ module Refuge
     end
 
     def self.search_users(city_id)
-      json = post('/users/search', { city_id: city_id, limit: 1000 })
+      json = post('/users/search', city_id: city_id, limit: 1000)
       json['users'].map do |member_json|
         Refuge::Member.from_json(member_json).freeze
       end

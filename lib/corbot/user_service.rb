@@ -1,12 +1,13 @@
 module Corbot
+  # Service layer to handle Corbot users.
   module UserService
-    require File.join(__dir__, "./user")
-    require File.join(__dir__, "../refuge/client")
+    require File.join(__dir__, './user')
+    require File.join(__dir__, '../refuge/client')
 
-    ADMIN_IDS = ENV.fetch("ADMIN_IDS") { "" }
+    ADMIN_IDS = ENV.fetch('ADMIN_IDS') { '' }
 
     def self.update_users_from_refuge(city_id)
-      admin_ids = ADMIN_IDS.split(",").map(&:to_i)
+      admin_ids = ADMIN_IDS.split(',').map(&:to_i)
 
       Corbot::User.transaction do
         Corbot::User.update_all(removed: true)
@@ -25,11 +26,11 @@ module Corbot
 
     def self.refresh_presence
       Corbot::User.transaction do
-        Corbot::User.update_all(current_location_id: nil, located_at: DateTime.now())
+        Corbot::User.update_all(current_location_id: nil, located_at: DateTime.now)
         Refuge::Client.user_presences.each do |user|
           Corbot::User
-            .where(refuge_user_id: user["id"])
-            .update_all(current_location_id: user["current_location_id"])
+            .where(refuge_user_id: user['id'])
+            .update_all(current_location_id: user['current_location_id'])
         end
       end
     end
@@ -65,7 +66,7 @@ module Corbot
         .where(refuge_user_id: refuge_user_id, removed: false)
         .update_all(
           slack_user_id: slack_user_id,
-          bound_at: DateTime.now(),
+          bound_at: DateTime.now,
         )
     end
 
@@ -75,7 +76,7 @@ module Corbot
         .limit(1)
         .update_all(
           slack_user_id: nil,
-          bound_at: nil,
+          bound_at: nil
         )
     end
 
