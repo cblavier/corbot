@@ -1,0 +1,80 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://slack.com/api/views.open
+      body:
+        encoding: UTF-8
+        string:
+          '{"trigger_id":"trigger","view":"{\"type\":\"modal\",\"callback_id\":\"modal-profile\",\"title\":{\"type\":\"plain_text\",\"text\":\"Pas
+          de profil ...\"},\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Oups,
+          on dirait que je n''ai pas accès au profil de ce membre :tired_face:\"}},{\"type\":\"image\",\"image_url\":\"https://gifimage.net/wp-content/uploads/2017/12/jhon-travolta-gif-1.gif\",\"alt_text\":\"Confused
+          Travolta\"}]}"}'
+      headers:
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <<<SLACK_BOT_TOKEN>>>
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+        Content-Length:
+          - "153"
+        Connection:
+          - keep-alive
+        Date:
+          - Thu, 05 Dec 2019 20:09:43 GMT
+        Server:
+          - Apache
+        Expires:
+          - Mon, 26 Jul 1997 05:00:00 GMT
+        X-Content-Type-Options:
+          - nosniff
+        Cache-Control:
+          - private, no-cache, no-store, must-revalidate
+        X-Oauth-Scopes:
+          - identify,bot:basic
+        Access-Control-Expose-Headers:
+          - x-slack-req-id, retry-after
+        X-Xss-Protection:
+          - "0"
+        X-Slack-Req-Id:
+          - 309a766b4a36acf9faa8d815427ac6c9
+        Vary:
+          - Accept-Encoding
+        Pragma:
+          - no-cache
+        Access-Control-Allow-Headers:
+          - slack-route, x-slack-version-ts
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains; preload
+        Referrer-Policy:
+          - no-referrer
+        Access-Control-Allow-Origin:
+          - "*"
+        X-Via:
+          - haproxy-www-b5x4
+        X-Cache:
+          - Miss from cloudfront
+        Via:
+          - 1.1 59778df72778f60e4701bb8768b14bcc.cloudfront.net (CloudFront)
+        X-Amz-Cf-Pop:
+          - CDG50-C1
+        X-Amz-Cf-Id:
+          - SpQwg9RvPxW7zkXsUfPByYPriWs3lWIJcN-LcLqNYQxBGwcZRcJS2g==
+      body:
+        encoding: ASCII-8BIT
+        string: '{"ok": true}'
+      http_version:
+    recorded_at: Thu, 05 Dec 2019 20:09:43 GMT
+recorded_with: VCR 5.0.0

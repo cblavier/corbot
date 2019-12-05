@@ -1,0 +1,91 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://slack.com/api/views.open
+      body:
+        encoding: UTF-8
+        string:
+          '{"trigger_id":"trigger","view":"{\"type\":\"modal\",\"callback_id\":\"modal-profile\",\"title\":{\"type\":\"plain_text\",\"text\":\"Foo
+          Foo\"},\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:grinning:   Qui
+          suis-je ?*\"},\"accessory\":{\"type\":\"button\",\"text\":{\"type\":\"plain_text\",\"text\":\"Voir
+          sur le Refuge\"},\"url\":\"https://refuge.la-cordee.net/users/42\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"lorem
+          ipsum\"},\"accessory\":{\"type\":\"image\",\"image_url\":\"http://refuge.la-cordee.net/avatar.jpg\",\"alt_text\":\"Photo
+          de profil\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:handshake:   Services*\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"lorem
+          ipsum\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:open_file_folder:   Références*\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"lorem
+          ipsum\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:game_die:   Hobbies*\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"lorem
+          ipsum\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:zap:   Super
+          pouvoirs*\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"lorem
+          ipsum\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"\\n\"}},{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*:star-struck:   Mes
+          centres d''intérêt*\"}},{\"type\":\"divider\"},{\"type\":\"section\",\"fields\":[{\"type\":\"plain_text\",\"text\":\"-
+          cuisine\",\"emoji\":true}]},{\"type\":\"divider\"},{\"type\":\"context\",\"elements\":[{\"type\":\"mrkdwn\",\"text\":\"A
+          rejoint la Cordée le 05 December 2019\"}]},{\"type\":\"context\",\"elements\":[{\"type\":\"mrkdwn\",\"text\":\":house_with_garden:
+          Nantes\"}]}]}"}'
+      headers:
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <<<SLACK_BOT_TOKEN>>>
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+        Content-Length:
+          - "153"
+        Connection:
+          - keep-alive
+        Date:
+          - Thu, 05 Dec 2019 20:16:33 GMT
+        Server:
+          - Apache
+        Expires:
+          - Mon, 26 Jul 1997 05:00:00 GMT
+        X-Content-Type-Options:
+          - nosniff
+        Cache-Control:
+          - private, no-cache, no-store, must-revalidate
+        X-Oauth-Scopes:
+          - identify,bot:basic
+        Access-Control-Expose-Headers:
+          - x-slack-req-id, retry-after
+        X-Xss-Protection:
+          - "0"
+        X-Slack-Req-Id:
+          - c81f507d9f0d463dd4726ea6710f4db6
+        Vary:
+          - Accept-Encoding
+        Pragma:
+          - no-cache
+        Access-Control-Allow-Headers:
+          - slack-route, x-slack-version-ts
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains; preload
+        Referrer-Policy:
+          - no-referrer
+        Access-Control-Allow-Origin:
+          - "*"
+        X-Via:
+          - haproxy-www-1pnc
+        X-Cache:
+          - Miss from cloudfront
+        Via:
+          - 1.1 12b082104e9893409b9ae6386e88d351.cloudfront.net (CloudFront)
+        X-Amz-Cf-Pop:
+          - CDG3-C2
+        X-Amz-Cf-Id:
+          - 1H-2bQ3AUI51dq3XRj2eDFGu6tdnb3F0mY6-SGc9lEL-qXVjmfie9Q==
+      body:
+        encoding: ASCII-8BIT
+        string: '{"ok": true}'
+      http_version:
+    recorded_at: Thu, 05 Dec 2019 20:16:33 GMT
+recorded_with: VCR 5.0.0
