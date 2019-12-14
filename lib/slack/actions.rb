@@ -20,7 +20,21 @@ module Slack
     def self.perform_message_action(action, trigger_id:, message:)
       case action
       when 'view_profile'
-        async_view_profile(trigger_id, message)
+        async_view_profile(trigger_id, message['user'])
+      end
+    end
+
+    def self.async_view_profile(trigger_id, user_id)
+      Thread.new do
+        if (user = Corbot::User.where(slack_user_id: user_id).first)
+          if (profile = Refuge::Client.get_refuge_profile(user.refuge_user_id))
+            Slack::ModalPublisher.publish_profile_modal(user, profile, trigger_id)
+          else
+            Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
+          end
+        else
+          Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
+        end
       end
     end
 
@@ -51,20 +65,6 @@ module Slack
       Thread.new do
         Corbot::UserService.unignore_binds
         Slack::PagePublisher.republish_admin_home_pages
-      end
-    end
-
-    private_class_method def self.async_view_profile(trigger_id, message)
-      Thread.new do
-        if (user = Corbot::User.where(slack_user_id: message['user']).first)
-          if (profile = Refuge::Client.get_refuge_profile(user.refuge_user_id))
-            Slack::ModalPublisher.publish_profile_modal(user, profile, trigger_id)
-          else
-            Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
-          end
-        else
-          Slack::ModalPublisher.publish_profile_modal_404(trigger_id)
-        end
       end
     end
   end

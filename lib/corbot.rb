@@ -17,6 +17,17 @@ before do
   end
 end
 
+post '/command' do
+  case params['text']
+  when 'help'
+    Slack::Commands.print_help
+  when /whois (.*)/
+    Slack::Commands.whois($1, params['trigger_id'])
+  else
+    Slack::Commands.print_unknown_command
+  end
+end
+
 post '/interactive' do
   if (payload = params[:payload])
     json = JSON.parse(payload)
