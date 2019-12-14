@@ -12,6 +12,8 @@ module Refuge
       json = get("/users/#{id}")
       json['id'] = id
       Refuge::Member.from_json(json).freeze
+    rescue NotFoundError
+      nil
     end
 
     def self.user_presences
@@ -66,12 +68,15 @@ module Refuge
     private_class_method def self.handle_http_response(response)
       case response.code
       when /2\d{2}/ then JSON.parse(response.body)
-      when '302' then raise 'redirected (not found?)'
-      when /40[1,3]/ then raise 'unauthorized'
-      when '404' then raise 'not found'
+      when '302' then raise NotFoundError
+      when /40[1,3]/ then raise UnauthorizedError
+      when '404' then raise NotFoundError
       when /5\d{2}/ then raise 'server error'
       else raise 'unknow error'
       end
     end
+
+    class NotFoundError < StandardError; end
+    class UnauthorizedError < StandardError; end
   end
 end

@@ -26,8 +26,8 @@ describe Refuge::Client do
     context "with unknown id" do
       let(:user_id) { "unknown" }
 
-      it "should raise not_found error" do
-        expect { subject }.to raise_error "redirected (not found?)"
+      it "should return nil" do
+        expect(subject).to be_nil
       end
     end
   end
