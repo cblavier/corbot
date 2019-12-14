@@ -62,4 +62,5 @@ describe Corbot::UserService do
       expect { subject }.to change { user.reload.slack_user_id }.from(nil).to(slack_user_id).and change { user.reload.bound_at }.from(nil)
     end
   end
+
 end

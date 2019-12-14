@@ -58,7 +58,8 @@ module Slack
             'admin_overflow',
             [
               { label: 'Ignorer ce membre.', value: "ignore_bind_#{user.try(:refuge_user_id)}" },
-              { label: 'Annuler la dernière action.', value: 'cancel_last_bind' }
+              { label: 'Annuler la dernière action.', value: 'cancel_last_bind' },
+              { label: 'Associer les membres ignorés.', value: 'unignore_users' }
             ]
           )
         )

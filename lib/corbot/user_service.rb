@@ -85,5 +85,11 @@ module Corbot
         .where(refuge_user_id: refuge_user_id, removed: false)
         .update_all(ignored: true)
     end
+
+    def self.unignore_binds
+      Corbot::User
+        .where(removed: false)
+        .update_all(ignored: false)
+    end
   end
 end

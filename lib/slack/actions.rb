@@ -11,6 +11,8 @@ module Slack
           async_cancel_last_bind
         when /ignore_bind_(.*)/
           async_ignore_bind($1)
+        when 'unignore_users'
+          async_unignore_users
         end
       end
     end
@@ -41,6 +43,13 @@ module Slack
     private_class_method def self.async_ignore_bind(refuge_user_id)
       Thread.new do
         Corbot::UserService.ignore_bind(refuge_user_id)
+        Slack::PagePublisher.republish_admin_home_pages
+      end
+    end
+
+    private_class_method def self.async_unignore_users
+      Thread.new do
+        Corbot::UserService.unignore_binds
         Slack::PagePublisher.republish_admin_home_pages
       end
     end
