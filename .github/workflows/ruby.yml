@@ -39,4 +39,3 @@ jobs:
         env:
           COVERAGE: 1
           RACK_ENV: test
-          GIT_BRANCH: "${GITHUB_REF/refs\/heads\//}"
