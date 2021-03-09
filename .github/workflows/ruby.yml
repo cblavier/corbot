@@ -25,17 +25,23 @@ jobs:
       - name: Install PostgreSQL 11 client
         run: |
           sudo apt-get -yqq install libpq-dev
+
       - name: Install CodeClimate Reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+        if: github.ref == 'refs/heads/master'
+
       - name: Build and run rspec
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          ./cc-test-reporter before-build
           bundle exec rspec
-          ./cc-test-reporter after-build -r ${{secrets.CC_TEST_REPORTER_ID}}
         env:
           COVERAGE: 1
           RACK_ENV: test
+
+      - name: Report code coverage
+        run: ./cc-test-reporter after-build -r ${{secrets.CC_TEST_REPORTER_ID}}
+        if: github.ref == 'refs/heads/master'
