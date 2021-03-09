@@ -1,4 +1,7 @@
 GEM
+  specs:
+
+GEM
   remote: https://rubygems.org/
   specs:
     activemodel (6.0.1)
@@ -130,7 +133,7 @@ DEPENDENCIES
   webmock!
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.7.2p137
 
 BUNDLED WITH
-   2.0.2
+   2.2.14
