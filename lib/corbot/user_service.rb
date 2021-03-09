@@ -6,13 +6,13 @@ module Corbot
 
     ADMIN_IDS = ENV.fetch('ADMIN_IDS') { '' }
 
-    def self.update_users_from_refuge(city_id)
+    def self.update_users_from_refuge(city_id, max_search_users_page: 20)
       admin_ids = ADMIN_IDS.split(',').map(&:to_i)
 
       Corbot::User.transaction do
         Corbot::User.update_all(removed: true)
 
-        Refuge::Client.search_users(city_id).each do |member|
+        Refuge::Client.search_users(city_id, max_page_count: max_search_users_page).each do |member|
           Corbot::User.where(refuge_user_id: member.id).first_or_initialize.tap do |user|
             user.refuge_user_first_name = member.first_name
             user.refuge_user_last_name = member.last_name

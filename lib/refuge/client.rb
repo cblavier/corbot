@@ -20,13 +20,15 @@ module Refuge
       get('/locations/user_presences')
     end
 
-    def self.search_users(city_id)
-      json = get("/users/search?city_id=#{city_id}")
-      json['users'].map do |member_json|
+    def self.search_users(city_id, max_page_count: 20)
+      (1..max_page_count).flat_map { |page| 
+        json = get("/users/search?city_id=#{city_id}&page=#{page}")
+        json['users']
+      }.map {|member_json|
         Refuge::Member.from_json(member_json).freeze
-      end
+      }
     end
-
+      
     private_class_method def self.get(path)
       cookie = ENV['REFUGE_COOKIE']
       http_request(path, :get, cookie: cookie)

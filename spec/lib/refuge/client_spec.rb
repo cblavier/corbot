@@ -38,7 +38,7 @@ describe Refuge::Client do
 
     let(:subject) {
       VCR.use_cassette(cassette) do
-        described_class.search_users(city_id)
+        described_class.search_users(city_id, max_page_count: 1)
       end
     }
 

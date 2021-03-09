@@ -7,7 +7,7 @@ describe Corbot::UserService do
   describe "update_users_from_refuge" do
     subject do
       VCR.use_cassette(cassette) do
-        described_class.update_users_from_refuge(city_id)
+        described_class.update_users_from_refuge(city_id, max_search_users_page: 1)
       end
     end
 

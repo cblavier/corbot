@@ -2,7 +2,7 @@
 http_interactions:
   - request:
       method: get
-      uri: https://refuge.la-cordee.net/users/search?city_id=8
+      uri: https://refuge.la-cordee.net/users/search?city_id=8&page=1
       body:
         encoding: UTF-8
         string: ""
