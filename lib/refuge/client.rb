@@ -21,7 +21,7 @@ module Refuge
     end
 
     def self.search_users(city_id)
-      json = post('/users/search', city_id: city_id, limit: 1000)
+      json = get("/users/search?city_id=#{city_id}")
       json['users'].map do |member_json|
         Refuge::Member.from_json(member_json).freeze
       end
@@ -77,6 +77,7 @@ module Refuge
     end
 
     class NotFoundError < StandardError; end
+
     class UnauthorizedError < StandardError; end
   end
 end
