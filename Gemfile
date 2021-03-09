@@ -18,7 +18,7 @@ source 'https://rubygems.org' do
     gem 'database_cleaner'
     gem 'rack-test'
     gem 'rspec'
-    gem 'simplecov', require: false
+    gem 'simplecov', '0.17.1', require: false
     gem 'simplecov-console', require: false
     gem 'vcr'
     gem 'webmock'
